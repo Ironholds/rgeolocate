@@ -18,6 +18,8 @@ goal is that `rgeolocate` will provide a binding to it. As of the 0.1.0 release,
 
 If you have other bindings you'd like to see, [open a request](https://github.com/Ironholds/rgeolocate/issues)!
 
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
 ### Installation
 
 For the development version:
