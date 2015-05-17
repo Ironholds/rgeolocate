@@ -32,7 +32,7 @@ private:
   
 public:
   
-  DataFrame call_maxmind(std::vector < std::string >& ip_addresses, MMDB_s *mmdb_set);
+  void call_maxmind(std::vector < std::string > ip_addresses, const char* file, std::vector < std::string > fields);
 };
 
 #endif

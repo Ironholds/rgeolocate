@@ -11,6 +11,5 @@
 #'
 #'@export
 maxmind <- function(ips, file, fields){
-  
-
+  maxmind_(ips, file, fields)
 }
