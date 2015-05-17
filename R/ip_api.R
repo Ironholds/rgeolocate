@@ -18,7 +18,7 @@ query_ip_api <- function(ip){
 #'Set to TRUE by default.
 #'
 #'@return either a data.frame or a list of vectors. If an IP cannot be geolocated, it
-#'will be provide an error message: see the examples for field names and examples of each
+#'will provide an error message: see the examples for field names and examples of each
 #'possible output.
 #'
 #'@examples

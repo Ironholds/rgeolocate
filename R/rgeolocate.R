@@ -1,12 +1,13 @@
-#' @title IP geolocation in R
+#' @title IP Geolocation in R
 #' @name rgeolocate
-#' @description Keep a vest on my chest, I'm sitting in my room as I'm
-#' looking out the face, still got some damage to write about.
+#' @description This package aims to provide connectors to myriad online and offline sources for
+#' taking IP addresses and geolocating them to country, city, timezone and a whole other host of goodies.
+#' For individual connectors, see the package index. It depends on libmaxminddb, which can be obtained and
+#' installed from https://github.com/maxmind/libmaxminddb
 #' 
 #' @useDynLib rgeolocate
 #' @importFrom Rcpp sourceCpp
-#' @importFrom httr user_agent GET
-#' @importFrom jsonlite fromJSON
+#' @importFrom httr user_agent GET content
 #' @docType package
 #' @aliases rgeolocate rgeolocate-package
 NULL
