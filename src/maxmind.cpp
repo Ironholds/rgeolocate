@@ -33,4 +33,16 @@ std::vector < MMDB_lookup_result_s > maxmind_bindings::lookup(std::vector < std:
 
 void maxmind_bindings::call_maxmind(std::vector < std::string > ip_addresses, const char* file, std::vector < std::string > fields){
   
+  //Open file
+  MMDB_s output;
+  int result;
+  result = MMDB_open(file, 0, &output);
+  if(result != MMDB_SUCCESS){
+    throw std::range_error("The geolocation database could not be opened");
+  }
+  
+  //Create reference and geolocate
+  std::vector < std::string >& ip_ref = ip_addresses;
+  std::vector < MMDB_lookup_result_s > results = lookup(ip_ref, &output);
+  
 }
