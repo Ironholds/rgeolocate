@@ -22,6 +22,5 @@
 #'results <- geolookup("196.200.60.51",file)
 #'@export
 maxmind <- function(ips, file){
-  fields = c("continent","country_name")
-  maxmind_(ips, file, fields)
+  maxmind_(ips, file)
 }

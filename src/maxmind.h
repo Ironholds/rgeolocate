@@ -30,7 +30,7 @@ private:
   
 public:
   
-  DataFrame call_maxmind(std::vector < std::string > ip_addresses, const char* file, std::vector < std::string > fields);
+  DataFrame call_maxmind(std::vector < std::string > ip_addresses, const char* file);
 };
 
 #endif

@@ -127,7 +127,7 @@ std::vector < std::string > maxmind_bindings::lookup(std::string& ip_address, MM
   return output;
 }
 
-DataFrame maxmind_bindings::call_maxmind(std::vector < std::string > ip_addresses, const char* file, std::vector < std::string > fields){
+DataFrame maxmind_bindings::call_maxmind(std::vector < std::string > ip_addresses, const char* file){
   
   //Open file
   MMDB_s geo_file;
@@ -142,7 +142,7 @@ DataFrame maxmind_bindings::call_maxmind(std::vector < std::string > ip_addresse
   int input_size = ip_addresses.size();
   
   //Create holding vectors
-  std::vector < std::string > holding(fields.size());
+  std::vector < std::string > holding(7);
   std::vector < std::string > continents(input_size);
   std::vector < std::string > country_names(input_size);
   std::vector < std::string > country_codes(input_size);

@@ -5,7 +5,7 @@ ip_to_df <- function(x) {
     .Call('rgeolocate_ip_to_df', PACKAGE = 'rgeolocate', x)
 }
 
-maxmind_ <- function(ips, file, fields) {
-    .Call('rgeolocate_maxmind_', PACKAGE = 'rgeolocate', ips, file, fields)
+maxmind_ <- function(ips, file) {
+    .Call('rgeolocate_maxmind_', PACKAGE = 'rgeolocate', ips, file)
 }
 

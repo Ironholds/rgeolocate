@@ -17,15 +17,14 @@ BEGIN_RCPP
 END_RCPP
 }
 // maxmind_
-DataFrame maxmind_(std::vector < std::string > ips, const char* file, std::vector < std::string > fields);
-RcppExport SEXP rgeolocate_maxmind_(SEXP ipsSEXP, SEXP fileSEXP, SEXP fieldsSEXP) {
+DataFrame maxmind_(std::vector < std::string > ips, const char* file);
+RcppExport SEXP rgeolocate_maxmind_(SEXP ipsSEXP, SEXP fileSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
     Rcpp::RNGScope __rngScope;
     Rcpp::traits::input_parameter< std::vector < std::string > >::type ips(ipsSEXP);
     Rcpp::traits::input_parameter< const char* >::type file(fileSEXP);
-    Rcpp::traits::input_parameter< std::vector < std::string > >::type fields(fieldsSEXP);
-    __result = Rcpp::wrap(maxmind_(ips, file, fields));
+    __result = Rcpp::wrap(maxmind_(ips, file));
     return __result;
 END_RCPP
 }
