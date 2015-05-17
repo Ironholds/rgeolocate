@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// ip_to_df
+DataFrame ip_to_df(std::list < std::vector < std::string > > x);
+RcppExport SEXP rgeolocate_ip_to_df(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< std::list < std::vector < std::string > > >::type x(xSEXP);
+    __result = Rcpp::wrap(ip_to_df(x));
+    return __result;
+END_RCPP
+}
 // maxmind_
 DataFrame maxmind_(std::vector < std::string > ips, const char* file, std::vector < std::string > fields);
 RcppExport SEXP rgeolocate_maxmind_(SEXP ipsSEXP, SEXP fileSEXP, SEXP fieldsSEXP) {

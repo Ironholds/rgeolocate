@@ -5,6 +5,8 @@
 #' 
 #' @useDynLib rgeolocate
 #' @importFrom Rcpp sourceCpp
+#' @importFrom httr user_agent GET
+#' @importFrom jsonlite fromJSON
 #' @docType package
 #' @aliases rgeolocate rgeolocate-package
 NULL
