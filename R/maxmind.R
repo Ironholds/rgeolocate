@@ -7,9 +7,8 @@
 #'
 #'@param file the full path to the .mmdb file you want to query.
 #'
-#'@param fields the fields you want to return.
-#'
 #'@export
-maxmind <- function(ips, file, fields){
+maxmind <- function(ips, file){
+  fields = c("continent","country_name")
   maxmind_(ips, file, fields)
 }

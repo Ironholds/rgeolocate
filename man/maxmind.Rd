@@ -4,14 +4,12 @@
 \alias{maxmind}
 \title{Geolocate IP Addresses through MaxMind Databases}
 \usage{
-maxmind(ips, file, fields)
+maxmind(ips, file)
 }
 \arguments{
 \item{ips}{a character vector of IP addresses (IPv4 and IPv6 both work)}
 
 \item{file}{the full path to the .mmdb file you want to query.}
-
-\item{fields}{the fields you want to return.}
 }
 \description{
 MaxMind does a set of proprietary geolocation databases

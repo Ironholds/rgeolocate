@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // maxmind_
-std::string maxmind_(std::vector < std::string > ips, const char* file, std::vector < std::string > fields);
+List maxmind_(std::vector < std::string > ips, const char* file, std::vector < std::string > fields);
 RcppExport SEXP rgeolocate_maxmind_(SEXP ipsSEXP, SEXP fileSEXP, SEXP fieldsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject __result;
