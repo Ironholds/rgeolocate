@@ -16,6 +16,17 @@ BEGIN_RCPP
     return __result;
 END_RCPP
 }
+// freegeoip_to_df
+DataFrame freegeoip_to_df(std::list < std::vector < std::string > > x);
+RcppExport SEXP rgeolocate_freegeoip_to_df(SEXP xSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject __result;
+    Rcpp::RNGScope __rngScope;
+    Rcpp::traits::input_parameter< std::list < std::vector < std::string > > >::type x(xSEXP);
+    __result = Rcpp::wrap(freegeoip_to_df(x));
+    return __result;
+END_RCPP
+}
 // maxmind_
 DataFrame maxmind_(std::vector < std::string > ips, const char* file);
 RcppExport SEXP rgeolocate_maxmind_(SEXP ipsSEXP, SEXP fileSEXP) {
