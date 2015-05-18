@@ -1,5 +1,4 @@
 query_ip_api <- function(ip){
-  Sys.sleep(0.10)
   result <- query(paste0("http://ip-api.com/json/", ip))
   if(result$status == "fail"){
     return(paste("Request failed:", result$message))
