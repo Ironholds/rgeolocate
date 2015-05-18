@@ -1,6 +1,11 @@
 Version 0.2.0 [WIP]
 -------------------------------------------------------------------------
+
+NEW FEATURES
 *Support for freegeoip.net
+
+DEVELOPMENT
+*add extern "C" to make the package more easily installable.
 
 Version 0.1.0
 -------------------------------------------------------------------------
