@@ -4,13 +4,19 @@
 \alias{ip_api}
 \title{Geolocate IP Addresses Through ip-api.com}
 \usage{
-ip_api(ip_addresses, as_data_frame = TRUE)
+ip_api(ip_addresses, as_data_frame = TRUE, delay = FALSE)
 }
 \arguments{
 \item{ip_addresses}{a character vector of IP addresses}
 
 \item{as_data_frame}{whether to return the results as a data.frame or not.
 Set to TRUE by default.}
+
+\item{delay}{whether or not to delay each request by 100ms. ip-api.com has a
+maximum threshold of 2,500 requests a minute; if you're parallelising calls, you
+might run into this. \code{delay} allows you to set a delay between requests, taking
+advantage of parallelisation while avoiding running into this threshold. Set to
+FALSE by default}
 }
 \value{
 either a data.frame or a list of vectors. If an IP cannot be geolocated, it
