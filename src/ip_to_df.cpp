@@ -115,3 +115,59 @@ DataFrame freegeoip_to_df(std::list < std::vector < std::string > > x){
                            _["status"] = status,
                            _["stringsAsFactors"] = false);
 }
+
+//[[Rcpp::export]]
+DataFrame telize_to_df(std::list < std::vector < std::string > > x){
+  int input_size = x.size();
+  int i = 0;
+  std::vector < std::string > holding;
+  std::list<std::vector < std::string > >::iterator it;
+  
+  std::vector < std::string > ip(input_size);
+  std::vector < std::string > country_code(input_size);
+  std::vector < std::string > country_name(input_size);
+  std::vector < std::string > asn(input_size);
+  std::vector < std::string > continent(input_size);
+  std::vector < std::string > area_code(input_size);
+  std::vector < std::string > isp(input_size);
+  std::vector < std::string > latitude(input_size);
+  std::vector < std::string > longitude(input_size);
+  std::vector < std::string > dma_code(input_size);
+  std::vector < std::string > country_code_3(input_size);
+  std::vector < std::string > status(input_size);
+  
+  for(it = x.begin(); it != x.end(); it++){
+    holding = *it;
+    if(holding.size() == 11){
+      longitude[i] = holding[0];
+      latitude[i] = holding[1];
+      asn[i] = holding[2];
+      ip[i] = holding[3];
+      area_code[i] = holding[4];
+      continent[i] = holding[5];
+      dma_code[i] = holding[6];
+      country_code[i] = holding[7];
+      isp[i] = holding[8];
+      country_name[i] = holding[9];
+      country_code_3[i] = holding[10];
+      status[i] = "Success";
+    } else {
+      status[i] = holding[0];
+    }
+    i++;
+  }
+  
+  return DataFrame::create(_["longitude"] = longitude,
+                           _["latitude"] = latitude,
+                           _["asn"] = asn,
+                           _["ip"] = ip,
+                           _["area_code"] = area_code,
+                           _["continent_code"] = continent,
+                           _["dma_code"] = dma_code,
+                           _["country_code"] = country_code,
+                           _["isp"] = isp,
+                           _["country_name"] = country_name,
+                           _["country_code_3"] = country_code_3,
+                           _["status"] = status,
+                           _["stringsAsFactors"] = false);
+}
