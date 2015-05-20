@@ -10,7 +10,7 @@
 
 <meta name="author" content="Oliver Keyes" />
 
-<meta name="date" content="2015-05-19" />
+<meta name="date" content="2015-05-20" />
 
 <title>Introduction to rgeolocate</title>
 
@@ -54,207 +54,36 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">Introduction to rgeolocate</h1>
 <h4 class="author"><em>Oliver Keyes</em></h4>
-<h4 class="date"><em>2015-05-19</em></h4>
+<h4 class="date"><em>2015-05-20</em></h4>
 </div>
 
 
-<p><code>rgeolocate</code> is an R package for geolocating IP addresses. It contains bindings to a variety of This vignette provides a quick introduction to the main functionality of the package.</p>
-<div id="vignette-info" class="section level2">
-<h2>Vignette Info</h2>
-<p>Note the various macros within the <code>vignette</code> setion of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the <code>title</code> field and the <code>\VignetteIndexEntry</code> to match the title of your vignette.</p>
+<p><code>rgeolocate</code> is an R package for geolocating IP addresses. It contains bindings to a variety of web APIs for IP geolocation, as well as an interface to the proprietary <a href="http://maxmind.com/">MaxMind GeoIP</a> databases (and a corresponding sample database).</p>
+<p>For the package to install properly, you’ll first need <a href="https://github.com/maxmind/libmaxminddb">libmaxminddb</a>: the source code and installation instructions can be found <a href="https://github.com/maxmind/libmaxminddb/blob/master/README.md">here</a>.</p>
+<div id="maxmind-databases" class="section level2">
+<h2>MaxMind databases</h2>
+<p>The biggest chunk of functionality is around the MaxMind proprietary databases, which you can read about <a href="https://www.maxmind.com/en/geoip2-databases">here</a>. <code>rgeolocate</code> has support for retrieving continent, country, region, netspeed, and timezone information from these databases, which (unfortunately!) must be paid for if you want to access them.</p>
+<p>MaxMind does openly release a more limited set of databases covering country and city data; these are also supported and can be obtained <a href="http://dev.maxmind.com/geoip/geoip2/geolite2/">here</a>. To minimise the effort for the individual user, the smaller, country-level database is included in <code>rgeolocate</code>. To demonstrate both how to use the database, and how to use the geolocation function, we can do:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rgeolocate)
+file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;GeoLite2-Country.mmdb&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;rgeolocate&quot;</span>)
+results &lt;-<span class="st"> </span><span class="kw">maxmind</span>(<span class="st">&quot;196.200.60.51&quot;</span>, file)
+results</code></pre>
+<pre><code>##   continent_name country_name country_code region_name city_name timezone
+## 1         Africa         Mali           ML     Unknown   Unknown  Unknown
+##   connection_type
+## 1         Unknown</code></pre>
+<p>The <code>maxmind()</code> function is fully vectorised and will happily geolocate around a million IP addresses in just under 5 seconds.</p>
 </div>
-<div id="styles" class="section level2">
-<h2>Styles</h2>
-<p>The <code>html_vignette</code> template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:</p>
-<pre><code>output: 
-  rmarkdown::html_vignette:
-    css: mystyles.css</code></pre>
-</div>
-<div id="figures" class="section level2">
-<h2>Figures</h2>
-<p>The figure sizes have been customised so that you can easily put two images side-by-side.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">1</span>:<span class="dv">10</span>)
-<span class="kw">plot</span>(<span class="dv">10</span>:<span class="dv">1</span>)</code></pre>
-<p><img src="data:image/png;base64,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" /> <img src="data:image/png;base64,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" /></p>
-<p>You can enable figure captions by <code>fig_caption: yes</code> in YAML:</p>
-<pre><code>output:
-  rmarkdown::html_vignette:
-    fig_caption: yes</code></pre>
-<p>Then you can use the chunk option <code>fig.cap = &quot;Your figure caption.&quot;</code> in <strong>knitr</strong>.</p>
-</div>
-<div id="more-examples" class="section level2">
-<h2>More Examples</h2>
-<p>You can write math expressions, e.g. <span class="math">\(Y = X\beta + \epsilon\)</span>, footnotes<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, and tables, e.g. using <code>knitr::kable()</code>.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">mpg</th>
-<th align="right">cyl</th>
-<th align="right">disp</th>
-<th align="right">hp</th>
-<th align="right">drat</th>
-<th align="right">wt</th>
-<th align="right">qsec</th>
-<th align="right">vs</th>
-<th align="right">am</th>
-<th align="right">gear</th>
-<th align="right">carb</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.620</td>
-<td align="right">16.46</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160.0</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.875</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">Datsun 710</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">108.0</td>
-<td align="right">93</td>
-<td align="right">3.85</td>
-<td align="right">2.320</td>
-<td align="right">18.61</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">Hornet 4 Drive</td>
-<td align="right">21.4</td>
-<td align="right">6</td>
-<td align="right">258.0</td>
-<td align="right">110</td>
-<td align="right">3.08</td>
-<td align="right">3.215</td>
-<td align="right">19.44</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Hornet Sportabout</td>
-<td align="right">18.7</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">175</td>
-<td align="right">3.15</td>
-<td align="right">3.440</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Valiant</td>
-<td align="right">18.1</td>
-<td align="right">6</td>
-<td align="right">225.0</td>
-<td align="right">105</td>
-<td align="right">2.76</td>
-<td align="right">3.460</td>
-<td align="right">20.22</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">Duster 360</td>
-<td align="right">14.3</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">245</td>
-<td align="right">3.21</td>
-<td align="right">3.570</td>
-<td align="right">15.84</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Merc 240D</td>
-<td align="right">24.4</td>
-<td align="right">4</td>
-<td align="right">146.7</td>
-<td align="right">62</td>
-<td align="right">3.69</td>
-<td align="right">3.190</td>
-<td align="right">20.00</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td align="left">Merc 230</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">140.8</td>
-<td align="right">95</td>
-<td align="right">3.92</td>
-<td align="right">3.150</td>
-<td align="right">22.90</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td align="left">Merc 280</td>
-<td align="right">19.2</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.30</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-</tbody>
-</table>
-<p>Also a quote using <code>&gt;</code>:</p>
-<blockquote>
-<p>“He who gives up [code] safety for [code] speed deserves neither.” (<a href="https://twitter.com/hadleywickham/status/504368538874703872">via</a>)</p>
-</blockquote>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>A footnote here.<a href="#fnref1">↩</a></p></li>
-</ol>
+<div id="web-apis" class="section level2">
+<h2>Web APIs</h2>
+<p><code>rgeolocate</code> also contains bindings to various IP geolocation web APIs; this chunk is still in development and is a wee bit unstable. At the moment, there is support for:</p>
+<ul>
+<li><a href="http://db-ip.com">db-ip.com</a>, through <code>db_ip()</code>;</li>
+<li><a href="http://freegeoip.net">freegeoip.net</a>, through <code>freegeoip()</code>;</li>
+<li><a href="http://ip-api.com">ip-api.com</a>, through <code>ip_api()</code>, and;</li>
+<li><a href="http://telize.com">telize.com</a>, through <code>telize()</code></li>
+</ul>
+<p>These are all somewhat different, with different sources for their data and different <em>amounts</em> of data. While vectorised, they’re going to be a lot slower than <code>maxmind()</code>, but are more viable for (say) obtaining information we don’t currently extract from the MaxMind databases, or handling IP addresses the free MaxMind databases don’t <em>cover</em> if you can’t obtain the paid ones.</p>
 </div>
 
 

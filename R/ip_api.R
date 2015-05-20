@@ -2,12 +2,18 @@ query_ip_api <- function(ip, sleep){
   if(sleep){
     Sys.sleep(0.10)
   }
-  result <- query(paste0("http://ip-api.com/json/", ip))
-  if(is.list(result) && result$status == "fail"){
-    return(paste("Request failed:", result$message))
+  url <- paste0("http://ip-api.com/json/", ip)
+  
+  result <- GET(url, user_agent("rgeolocate - https://github.com/Ironholds/rgeolocate"))
+  if(result$status > 300){
+    return("Error")
   }
   
-  return(unlist(result))
+  parsed_results <- content(result, as = "parsed", type = "application/json")
+  if(parsed_results$status == "fail"){
+    return(paste("Error:", result$message))
+  }
+  return(unlist(parsed_results))
 }
 
 #'@title Geolocate IP Addresses Through ip-api.com
