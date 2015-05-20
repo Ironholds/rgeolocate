@@ -1,9 +1,10 @@
 query_telize <- function(ip){
-  result <- query(paste0("http://www.telize.com/geoip/", ip))
-  if(length(result) == 1){
-    return(result)
+  url <-paste0("http://www.telize.com/geoip/", ip)
+  result <- GET(url, user_agent("rgeolocate - https://github.com/Ironholds/rgeolocate"))
+  if(result$status > 300){
+    return("Error")
   }
-  return(unlist(result))
+  return(unlist(content(result, as = "parsed", type = "application/json")))
 }
 
 #'@title Geolocate IP Addresses Through telize.com

@@ -1,7 +1,10 @@
-db_ip_query <- function(ip, key){
-  results <- query(paste0("http://api.db-ip.com/addrinfo?addr=", ip,
-                          "&api_key=", key))
-  return(results)
+query_db_ip <- function(ip, key){
+  url <- paste0("http://api.db-ip.com/addrinfo?addr=", ip, "&api_key=", key)
+  result <- GET(url, user_agent("rgeolocate - https://github.com/Ironholds/rgeolocate"))
+  if(result$status > 300){
+    return("Error")
+  }
+  return(unlist(content(result, as = "parsed", type = "application/json")))
 }
 
 #'@title Geolocate IP Addresses Through db-ip.com
@@ -29,5 +32,5 @@ db_ip_query <- function(ip, key){
 #'}
 #'@export
 db_ip <- function(ip_addresses, key){
-  lapply(ip_addresses, db_ip_query, key = key)
+  lapply(ip_addresses, query_db_ip, key = key)
 }
