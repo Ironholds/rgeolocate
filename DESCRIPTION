@@ -13,5 +13,7 @@ License: MIT + file LICENSE
 LinkingTo: Rcpp
 Imports: Rcpp,
          httr
-Suggests: testthat
+Suggests: testthat,
+    knitr
 SystemRequirements: libmaxminddb (see https://github.com/maxmind/libmaxminddb)
+VignetteBuilder: knitr
