@@ -13,8 +13,9 @@ styles and requirements.
 goal is that `rgeolocate` will provide a binding to it. As of the 0.1.0 release, it contains:
 
 1. A binding to the binary MaxMind databases;
-2. A binding to ip-api.com;
-3. A binding to db-ip.com
+2. Wrappers around multiple online geolocation services ([see the vignette](https://github.com/Ironholds/rgeolocate/blob/master/vignettes/Introduction_to_rgeolocate.Rmd)
+for more)
+
 
 If you have other bindings you'd like to see, [open a request](https://github.com/Ironholds/rgeolocate/issues)!
 
@@ -22,13 +23,13 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 
 ### Installation
 
+For the 0.2.0 release:
+
+    devtools::install_github("ironholds/rgeolocate", ref = "0.2.0")
+
 For the development version:
 
     devtools::install_github("ironholds/rgeolocate")
-    
-For the 0.1.0 release:
-
-    devtools::install_github("ironholds/rgeolocate", ref = "0.1.0")
     
 
 ### Dependencies
