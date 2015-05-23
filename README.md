@@ -25,7 +25,7 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 
 For the 0.2.0 release:
 
-    devtools::install_github("ironholds/rgeolocate", ref = "0.2.0")
+    devtools::install_github("ironholds/rgeolocate", ref = "0.3.0")
 
 For the development version:
 

@@ -10,7 +10,7 @@
 
 <meta name="author" content="Oliver Keyes" />
 
-<meta name="date" content="2015-05-20" />
+<meta name="date" content="2015-05-22" />
 
 <title>Introduction to rgeolocate</title>
 
@@ -54,7 +54,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">Introduction to rgeolocate</h1>
 <h4 class="author"><em>Oliver Keyes</em></h4>
-<h4 class="date"><em>2015-05-20</em></h4>
+<h4 class="date"><em>2015-05-22</em></h4>
 </div>
 
 
@@ -66,12 +66,10 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>MaxMind does openly release a more limited set of databases covering country and city data; these are also supported and can be obtained <a href="http://dev.maxmind.com/geoip/geoip2/geolite2/">here</a>. To minimise the effort for the individual user, the smaller, country-level database is included in <code>rgeolocate</code>. To demonstrate both how to use the database, and how to use the geolocation function, we can do:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rgeolocate)
 file &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>,<span class="st">&quot;GeoLite2-Country.mmdb&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;rgeolocate&quot;</span>)
-results &lt;-<span class="st"> </span><span class="kw">maxmind</span>(<span class="st">&quot;196.200.60.51&quot;</span>, file)
+results &lt;-<span class="st"> </span><span class="kw">maxmind</span>(<span class="st">&quot;196.200.60.51&quot;</span>, file, <span class="kw">c</span>(<span class="st">&quot;continent_name&quot;</span>, <span class="st">&quot;country_code&quot;</span>, <span class="st">&quot;country_name&quot;</span>))
 results</code></pre>
-<pre><code>##   continent_name country_name country_code region_name city_name timezone
-## 1         Africa         Mali           ML     Unknown   Unknown  Unknown
-##   connection_type
-## 1         Unknown</code></pre>
+<pre><code>##   continent_name country_code country_name
+## 1         Africa           ML         Mali</code></pre>
 <p>The <code>maxmind()</code> function is fully vectorised and will happily geolocate around a million IP addresses in just under 5 seconds.</p>
 </div>
 <div id="web-apis" class="section level2">

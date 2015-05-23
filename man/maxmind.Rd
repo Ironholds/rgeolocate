@@ -4,12 +4,24 @@
 \alias{maxmind}
 \title{Geolocate IP Addresses through MaxMind Databases}
 \usage{
-maxmind(ips, file)
+maxmind(ips, file, fields = c("continent_name", "country_name",
+  "country_code"))
 }
 \arguments{
 \item{ips}{a character vector of IP addresses (IPv4 and IPv6 both work)}
 
 \item{file}{the full path to the .mmdb file you want to query.}
+
+\item{fields}{the fields you want to retrieve - options are:
+\itemize{
+ \item{continent_name}{: the English-language name of the continent. Requires a country or city database.}
+ \item{country_name}{: the English-language name of the country Requires a country or city database.}
+ \item{country_code}{: the ISO code of the country. Requires a country or city database}
+ \item{region_name}{: the English-language name of the region. Requires a city database.}
+ \item{city_name}{: the English-language name of the city. Requires a city database}
+ \item{timezone}{: the tzdata-compatible time zone. Requires a city database}
+ \item{connection}{: the type of internet connection. Requires a connection type/netspeed database}
+}}
 }
 \description{
 MaxMind does a set of proprietary geolocation databases
@@ -28,6 +40,6 @@ address doesn't have an entry in the file at all, "Unknown" will be returned for
 }
 \examples{
 file <- system.file("extdata","GeoLite2-Country.mmdb", package = "rgeolocate")
-results <- maxmind("196.200.60.51", file)
+results <- maxmind("196.200.60.51", file, "country_code")
 }
 

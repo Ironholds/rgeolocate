@@ -1,3 +1,9 @@
+Version 0.3.0
+
+NEW FEATURES
+* maxmind() is now variable - you can pass in single fields, or various permutations of fields, rather
+than having it geolocate everything all at once.
+
 Version 0.2.0
 -------------------------------------------------------------------------
 

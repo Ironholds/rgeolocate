@@ -13,7 +13,7 @@ telize_to_df <- function(x) {
     .Call('rgeolocate_telize_to_df', PACKAGE = 'rgeolocate', x)
 }
 
-maxmind_ <- function(ips, file) {
-    .Call('rgeolocate_maxmind_', PACKAGE = 'rgeolocate', ips, file)
+maxmind_ <- function(ips, file, fields) {
+    .Call('rgeolocate_maxmind_', PACKAGE = 'rgeolocate', ips, file, fields)
 }
 

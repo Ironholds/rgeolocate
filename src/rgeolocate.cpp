@@ -3,7 +3,7 @@
 using namespace Rcpp;
 
 //[[Rcpp::export]]
-DataFrame maxmind_(std::vector < std::string > ips, const char* file){
+List maxmind_(std::vector < std::string > ips, const char* file, std::vector < std::string > fields){
   maxmind_bindings bind_inst;
-  return bind_inst.call_maxmind(ips, file);
+  return bind_inst.call_maxmind(ips, file, fields);
 }
