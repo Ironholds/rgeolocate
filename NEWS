@@ -2,7 +2,8 @@ Version 0.4.0
 -------------------------------------------------------------------------
 
 DEVELOPMENT
-*libmaxminddb is now included, making the code 
+*libmaxminddb is now included, making the code self-contained.
+*Unit tests are fixed to avoid unintended external dependencies.
 
 Version 0.3.0
 -------------------------------------------------------------------------

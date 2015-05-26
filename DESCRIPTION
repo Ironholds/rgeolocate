@@ -1,13 +1,12 @@
 Package: rgeolocate
 Type: Package
 Title: IP Geolocation in R
-Version: 0.3.0
+Version: 0.4.0
 Date: 2015-05-26
 Author: Oliver Keyes [aut, cre], Drew Schmidt [ctb]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
-Description: This package aims to provide connectors to myriad online and offline sources for
- taking IP addresses and geolocating them to country, city, timezone and a whole other host of goodies.
- For individual connectors, see the package index.
+Description: Connectors to myriad online and offline sources for taking IP addresses and geolocating them to country, city,
+timezone and a whole other host of goodies. For individual connectors, see the package index.
 License: MIT + file LICENSE
 LinkingTo: Rcpp
 Imports: Rcpp,
