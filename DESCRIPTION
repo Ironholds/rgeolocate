@@ -7,13 +7,11 @@ Author: Oliver Keyes [aut, cre], Drew Schmidt [ctb]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: This package aims to provide connectors to myriad online and offline sources for
  taking IP addresses and geolocating them to country, city, timezone and a whole other host of goodies.
- For individual connectors, see the package index. It depends on libmaxminddb, which can be obtained and
- installed from https://github.com/maxmind/libmaxminddb
+ For individual connectors, see the package index.
 License: MIT + file LICENSE
 LinkingTo: Rcpp
 Imports: Rcpp,
          httr
 Suggests: testthat,
     knitr
-SystemRequirements: libmaxminddb (see https://github.com/maxmind/libmaxminddb)
 VignetteBuilder: knitr
