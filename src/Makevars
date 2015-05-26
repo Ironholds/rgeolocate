@@ -1,1 +1,1 @@
-PKG_LIBS = -lmaxminddb
+#PKG_LIBS = -lmaxminddb
