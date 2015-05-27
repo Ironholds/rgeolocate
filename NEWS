@@ -1,6 +1,9 @@
 Version 0.4.0
 -------------------------------------------------------------------------
 
+NEW FEATURES
+*rgeolocate now works on Windows thanks to the work of Drew Conway.
+
 DEVELOPMENT
 *libmaxminddb is now included, making the code self-contained.
 *Unit tests are fixed to avoid unintended external dependencies.
