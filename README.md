@@ -1,6 +1,6 @@
 ## Generalised IP geolocation through R
 
-__Author(s:__ Oliver Keyes, Drew Conway<br/>
+__Author(s:__ Oliver Keyes, Drew Schmidt<br/>
 __License:__ [MIT](http://opensource.org/licenses/MIT)<br/> with the Apache-licensed `libmaxminddb`.
 __Status:__ In development
 
@@ -34,5 +34,5 @@ For the development version:
 
 ### Dependencies
 `rgeolocate` depends on [httr](http://cran.r-project.org/web/packages/httr/index.html) for the bindings
-to web databases; other than that, just base R! Thanks to the work of Drew Conway, `rgeolocate` includes the underlying
+to web databases; other than that, just base R! Thanks to the work of Drew Schmidt, `rgeolocate` includes the underlying
 MaxMind library and its dependencies.
