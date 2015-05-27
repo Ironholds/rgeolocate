@@ -1,6 +1,22 @@
 #ifndef MAXMINDDB_CONFIG_H
 #define MAXMINDDB_CONFIG_H
 
+
+/* Modified 5/26/15 Drew Schmidt */
+#define OS_WIN32 (defined(__WIN32) || defined(_WIN32) || defined(WIN32) || defined(__WIN32__))
+#define OS_WIN64 (defined(__WIN64) || defined(_WIN64) || defined(__WIN64__))
+
+// Winows assumptions: 1. you're using MinGW, 2. no ability to run configure
+#if OS_WIN32
+  #define MMDB_UINT128_USING_MODE     0
+  #define MMDB_UINT128_IS_BYTE_ARRAY  1
+#elif OS_WIN64
+  #define MMDB_UINT128_USING_MODE     1
+  #define MMDB_UINT128_IS_BYTE_ARRAY  1
+#endif
+
+
+
 #ifndef MMDB_UINT128_USING_MODE
 /* Define as 1 if we we use unsigned int __atribute__ ((__mode__(TI))) for uint128 values */
 #define MMDB_UINT128_USING_MODE 0
