@@ -1,7 +1,7 @@
 ## Generalised IP geolocation through R
 
-__Author:__ Oliver Keyes<br/>
-__License:__ [MIT](http://opensource.org/licenses/MIT)<br/>
+__Author(s:__ Oliver Keyes, Drew Conway<br/>
+__License:__ [MIT](http://opensource.org/licenses/MIT)<br/> with the Apache-licensed `libmaxminddb`.
 __Status:__ In development
 
 IP geolocation is a powerful tool to have if you're dealing with web data, and there are a couple of R packages that
@@ -34,5 +34,5 @@ For the development version:
 
 ### Dependencies
 `rgeolocate` depends on [httr](http://cran.r-project.org/web/packages/httr/index.html) for the bindings
-to web databases, and [libmaxminddb](https://github.com/maxmind/libmaxminddb) for the MaxMind binary
-files. You'll need to install those for this to work for you.
+to web databases; other than that, just base R! Thanks to the work of Drew Conway, `rgeolocate` includes the underlying
+MaxMind library and its dependencies.

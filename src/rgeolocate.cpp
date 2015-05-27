@@ -1,5 +1,4 @@
 #include "maxmind.h"
-#include <Rcpp.h>
 using namespace Rcpp;
 
 //[[Rcpp::export]]
