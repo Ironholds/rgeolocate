@@ -18,7 +18,7 @@
 #'  \item{connection}{: the type of internet connection. Requires a connection type/netspeed database}
 #'}
 #'@details
-#'\code{geolookup} uses the \href{http:#dev.maxmind.com/geoip/geoip2/downloadable/}{MaxMind GeoIP2 databases}
+#'\code{geolookup} uses the \href{http://dev.maxmind.com/geoip/geoip2/downloadable/}{MaxMind GeoIP2 databases}
 #'to geolocate IP addresses, retrieving any of the data listed in \code{fields}. Different fields are
 #'appropriate for different provided files; the connection type databases, for example, contain connection
 #'types and nothing else, while the city- and country-level files don't contain connection types at all.
