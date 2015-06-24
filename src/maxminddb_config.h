@@ -13,6 +13,12 @@
 #elif OS_WIN64
   #define MMDB_UINT128_USING_MODE     1
   #define MMDB_UINT128_IS_BYTE_ARRAY  1
+#else
+  #include "config.h"
+#endif
+
+#if OS_WIN32 || OS_WIN64
+  #define PACKAGE_VERSION "1.0.4"
 #endif
 
 

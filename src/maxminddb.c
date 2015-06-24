@@ -1,9 +1,3 @@
-// FIXME could be more elegant about this but ~whatever~
-#define PACKAGE_VERSION "1.0.4"
-
-#if HAVE_CONFIG_H
-#include <config.h>
-#endif
 #include "maxminddb.h"
 #include "maxminddb-compat-util.h"
 #include <errno.h>
