@@ -22,6 +22,7 @@ query_telize <- function(ip){
 #'the option for \code{as_data_frame}
 #'
 #'@examples
+#'\dontrun{
 #'#Valid, data.frame output
 #'result <- telize("2607:FB90:426:DC1D:CFC4:4875:8BC2:4D93")
 #'
@@ -33,7 +34,7 @@ query_telize <- function(ip){
 #'
 #'#Invalid list output
 #'result <- telize("argh", as_data_frame = FALSE)
-#'
+#'}
 #'@export
 telize <- function(ip_addresses, as_data_frame = TRUE){
   

@@ -5,9 +5,10 @@ Version: 0.4.0
 Date: 2015-05-26
 Author: Oliver Keyes [aut, cre], Drew Schmidt [aut]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
-Copyright: MaxMind Ltd for the underlying libmaxmminddb library, and the package authors for all other content.
+Copyright: MaxMind, Ltd. for the underlying libmaxmminddb library, and the package authors for all other content.
 Description: Connectors to myriad online and offline sources for taking IP addresses and geolocating them to country, city, timezone and a whole other host of goodies. For individual connectors, see the package index.
-License: MIT + file LICENSE
+License: Apache License (== 2.0)
+BugReports: https://github.com/ironholds/rgeolocate/issues
 LinkingTo: Rcpp
 Imports: Rcpp,
          httr

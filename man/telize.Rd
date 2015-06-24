@@ -23,6 +23,7 @@ this package). \code{telize} allows you to query the Telize service to geolocate
 IPv4 or IPv6 IP addresses.
 }
 \examples{
+\dontrun{
 #Valid, data.frame output
 result <- telize("2607:FB90:426:DC1D:CFC4:4875:8BC2:4D93")
 
@@ -34,5 +35,6 @@ result <- telize("2607:FB90:426:DC1D:CFC4:4875:8BC2:4D93", as_data_frame = FALSE
 
 #Invalid list output
 result <- telize("argh", as_data_frame = FALSE)
+}
 }
 
