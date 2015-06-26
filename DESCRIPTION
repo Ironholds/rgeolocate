@@ -2,8 +2,8 @@ Package: rgeolocate
 Type: Package
 Title: IP Geolocation in R
 Version: 0.4.0
-Date: 2015-05-26
-Author: Oliver Keyes [aut, cre], Drew Schmidt [aut]
+Date: 2015-06-24
+Author: Oliver Keyes [aut, cre], Drew Schmidt [aut], Maxmind, Inc. [cph], Pascal Gloor [cph]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Copyright: MaxMind, Ltd. for the underlying libmaxmminddb library, and the package authors for all other content.
 Description: Connectors to myriad online and offline sources for taking IP addresses and geolocating them to country, city, timezone and a whole other host of goodies. For individual connectors, see the package index.
