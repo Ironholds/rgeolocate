@@ -12,8 +12,6 @@ class maxmind_bindings {
   
 private:
   
-  std::string mmdb_convert_string(MMDB_entry_data_s entry);
-  
   std::vector < std::string > continent_name(MMDB_s *data, std::vector < std::string >& ip_addresses);
   
   std::vector < std::string > country_name(MMDB_s *data, std::vector < std::string >& ip_addresses);
