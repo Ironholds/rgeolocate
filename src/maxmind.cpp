@@ -1,32 +1,37 @@
 #include "maxmind.h"
+#include <stdarg.h>
 
-std::string maxmind_bindings::mmdb_convert_string(MMDB_entry_data_s entry){
+static inline std::string mmdb_convert_string(const MMDB_entry_data_s &entry){
   std::string output(entry.utf8_string, 0, entry.data_size);
   return output;
 }
 
-std::vector < std::string > maxmind_bindings::continent_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
-  
-  //Measure input size, set up holding/output objects
+static std::vector < std::string > mmdb_getval(MMDB_s *data, const std::vector< std::string > &ip_addresses, ...){
   int input_size = ip_addresses.size();
   std::vector < std::string > output(input_size);
+  
   int run_status;
   int lookup_error;
   int gai_error;
-  MMDB_entry_data_s entry_data;
   MMDB_lookup_result_s result;
+  MMDB_entry_data_s entry_data;
+  va_list path;
+  
   
   for(int i = 0; i < input_size; i++){
     if((i % 10000) == 0){
       Rcpp::checkUserInterrupt();
     }
+    
     result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
     if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
       output[i] = "Unknown";
     } else {
-      run_status = MMDB_get_value(&result.entry, &entry_data, "continent","names", "en", NULL);
+      va_start(path, ip_addresses);
+      run_status = MMDB_vget_value(&result.entry, &entry_data, path);
+      va_end(path);
       if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
-        output[i] = "Unknown";
+        output[i] ="Unknown";
       } else {
         output[i] = mmdb_convert_string(entry_data);
       }
@@ -34,192 +39,35 @@ std::vector < std::string > maxmind_bindings::continent_name(MMDB_s *data, std::
   }
   
   return output;
+}
+
+
+std::vector < std::string > maxmind_bindings::continent_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
+  return mmdb_getval(data, ip_addresses, "continent", "names", "en", NULL);
 }
 
 std::vector < std::string > maxmind_bindings::country_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
-  
-  //Measure input size, set up holding/output objects
-  int input_size = ip_addresses.size();
-  std::vector < std::string > output(input_size);
-  int run_status;
-  int lookup_error;
-  int gai_error;
-  MMDB_entry_data_s entry_data;
-  MMDB_lookup_result_s result;
-  
-  for(int i = 0; i < input_size; i++){
-    if((i % 10000) == 0){
-      Rcpp::checkUserInterrupt();
-    }
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
-    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
-      output[i] = "Unknown";
-    } else {
-      run_status = MMDB_get_value(&result.entry, &entry_data, "country","names","en", NULL);
-      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
-        output[i] = "Unknown";
-      } else {
-        output[i] = mmdb_convert_string(entry_data);
-      }
-    }
-  }
-  
-  return output;
+  return mmdb_getval(data, ip_addresses, "country", "names", "en", NULL);
 }
 
 std::vector < std::string > maxmind_bindings::country_code(MMDB_s *data, std::vector < std::string >& ip_addresses){
-  
-  //Measure input size, set up holding/output objects
-  int input_size = ip_addresses.size();
-  std::vector < std::string > output(input_size);
-  int run_status;
-  int lookup_error;
-  int gai_error;
-  MMDB_entry_data_s entry_data;
-  MMDB_lookup_result_s result;
-  
-  for(int i = 0; i < input_size; i++){
-    if((i % 10000) == 0){
-      Rcpp::checkUserInterrupt();
-    }
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
-    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
-      output[i] = "Unknown";
-    } else {
-      run_status = MMDB_get_value(&result.entry, &entry_data, "country","iso_code", NULL);
-      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
-        output[i] = "Unknown";
-      } else {
-        output[i] = mmdb_convert_string(entry_data);
-      }
-    }
-  }
-  
-  return output;
+  return mmdb_getval(data, ip_addresses, "country", "iso_code", NULL);
 }
 
 std::vector < std::string > maxmind_bindings::region_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
-  
-  //Measure input size, set up holding/output objects
-  int input_size = ip_addresses.size();
-  std::vector < std::string > output(input_size);
-  int run_status;
-  int lookup_error;
-  int gai_error;
-  MMDB_entry_data_s entry_data;
-  MMDB_lookup_result_s result;
-  
-  for(int i = 0; i < input_size; i++){
-    if((i % 10000) == 0){
-      Rcpp::checkUserInterrupt();
-    }
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
-    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
-      output[i] = "Unknown";
-    } else {
-      run_status = MMDB_get_value(&result.entry, &entry_data, "subdivisions","0","names", "en", NULL);
-      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
-        output[i] = "Unknown";
-      } else {
-        output[i] = mmdb_convert_string(entry_data);
-      }
-    }
-  }
-  
-  return output;
+  return mmdb_getval(data, ip_addresses, "subdivisions", "0", "names", "en", NULL);
 }
 
 std::vector < std::string > maxmind_bindings::city_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
-  
-  //Measure input size, set up holding/output objects
-  int input_size = ip_addresses.size();
-  std::vector < std::string > output;
-  int run_status;
-  int lookup_error;
-  int gai_error;
-  MMDB_lookup_result_s result;
-  MMDB_entry_data_s entry_data;
-  
-  for(int i = 0; i < input_size; i++){
-    if((i % 10000) == 0){
-      Rcpp::checkUserInterrupt();
-    }
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
-    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
-      output[i] = "Unknown";
-    } else {
-      run_status = MMDB_get_value(&result.entry, &entry_data, "city","names", "en", NULL);
-      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
-        output[i] = "Unknown";
-      } else {
-        output[i] = mmdb_convert_string(entry_data);
-      }
-    }
-  }
-  
-  return output;
+  return mmdb_getval(data, ip_addresses,"city", "names", "en", NULL);
 }
 
 std::vector < std::string > maxmind_bindings::timezone(MMDB_s *data, std::vector < std::string >& ip_addresses){
-  
-  //Measure input size, set up holding/output objects
-  int input_size = ip_addresses.size();
-  std::vector < std::string > output;
-  int run_status;
-  int lookup_error;
-  int gai_error;
-  MMDB_lookup_result_s result;
-  MMDB_entry_data_s entry_data;
-  
-  for(int i = 0; i < input_size; i++){
-    if((i % 10000) == 0){
-      Rcpp::checkUserInterrupt();
-    }
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
-    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
-      output[i] = "Unknown";
-    } else {
-      run_status = MMDB_get_value(&result.entry, &entry_data, "location","time_zone", NULL);
-      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
-        output[i] = "Unknown";
-      } else {
-        output[i] = mmdb_convert_string(entry_data);
-      }
-    }
-  }
-  
-  return output;
+  return mmdb_getval(data, ip_addresses, "location", "time_zone", NULL);
 }
 
 std::vector < std::string > maxmind_bindings::connection(MMDB_s *data, std::vector < std::string >& ip_addresses){
-  
-  //Measure input size, set up holding/output objects
-  int input_size = ip_addresses.size();
-  std::vector < std::string > output;
-  int run_status;
-  int lookup_error;
-  int gai_error;
-  MMDB_lookup_result_s result;
-  MMDB_entry_data_s entry_data;
-  
-  for(int i = 0; i < input_size; i++){
-    if((i % 10000) == 0){
-      Rcpp::checkUserInterrupt();
-    }
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
-    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
-      output[i] = "Unknown";
-    } else {
-      run_status = MMDB_get_value(&result.entry, &entry_data, "connection_type", NULL);
-      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
-        output[i] = "Unknown";
-      } else {
-        output[i] = mmdb_convert_string(entry_data);
-      }
-    }
-  }
-  
-  return output;
+  return mmdb_getval(data, ip_addresses, "connection_type", NULL);
 }
 
 List maxmind_bindings::lookup(std::vector < std::string >& ip_addresses, MMDB_s *mmdb_set,
