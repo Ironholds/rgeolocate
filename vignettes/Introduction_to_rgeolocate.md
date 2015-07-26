@@ -1,7 +1,7 @@
 ---
 title: "Introduction to rgeolocate"
 author: "Oliver Keyes"
-date: "`r Sys.Date()`"
+date: "2015-07-26"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{IP Geolocation with rgeolocate}
@@ -23,11 +23,17 @@ be obtained [here](http://dev.maxmind.com/geoip/geoip2/geolite2/). To minimise t
 country-level database is included in `rgeolocate`. To demonstrate both how to use the database, and how to use the geolocation
 function, we can do:
 
-```{r}
+
+```r
 library(rgeolocate)
 file <- system.file("extdata","GeoLite2-Country.mmdb", package = "rgeolocate")
 results <- maxmind("196.200.60.51", file, c("continent_name", "country_code", "country_name"))
 results
+```
+
+```
+##   continent_name country_code country_name
+## 1         Africa           ML         Mali
 ```
 
 The `maxmind()` function is fully vectorised and will happily geolocate around a million IP addresses in just under 5 seconds.

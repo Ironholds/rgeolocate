@@ -1,4 +1,8 @@
-Version 0.4.1 [WIP]
+Version 0.4.2 [WIP]
+-------------------------------------------------------------------------
+* Vignette naming problem corrected.
+
+Version 0.4.1
 -------------------------------------------------------------------------
 * Bug when asking maxmind for connection information now accidentally fixed;
 * Internal refactor by Drew Schmidt to maxmind-related C++.

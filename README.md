@@ -22,9 +22,9 @@ Please note that this project is released with a [Contributor Code of Conduct](C
 
 ### Installation
 
-For the 0.4.0 release:
+For the latest CRAN release:
 
-    devtools::install_github("ironholds/rgeolocate", ref = "0.4.0")
+    install.packages("rgeolocate")
 
 For the development version:
 
