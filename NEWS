@@ -1,4 +1,11 @@
-Version 0.4.2 [WIP]
+Version 1.0.0 [WIP]
+
+NEW FEATURES
+* freegeoip() is deprecated as the service is too unreliable to be trusted.
+
+DEVELOPMENT
+
+Version 0.4.2
 -------------------------------------------------------------------------
 * Vignette naming problem corrected.
 

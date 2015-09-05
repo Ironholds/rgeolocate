@@ -44,7 +44,6 @@ The `maxmind()` function is fully vectorised and will happily geolocate around a
 unstable. At the moment, there is support for:
 
 * [db-ip.com](http://db-ip.com), through `db_ip()`;
-* [freegeoip.net](http://freegeoip.net), through `freegeoip()`;
 * [ip-api.com](http://ip-api.com), through `ip_api()`, and;
 * [telize.com](http://telize.com), through `telize()`
 
