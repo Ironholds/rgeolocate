@@ -72,12 +72,6 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
-/* Missing the unsigned __int128 type */
-#undef MMDB_UINT128_IS_BYTE_ARRAY
-
-/* int128 types are available with __attribute__((mode(TI))) */
-#undef MMDB_UINT128_USING_MODE
-
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
 

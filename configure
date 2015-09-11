@@ -3588,35 +3588,6 @@ fi
 done
 
 
-# This check is backwards in order to make life easier for people writing
-# extensions in other languages that link to this library. If they want to
-# simply assume that they are using a newish compiler, they don't need to
-# check for this type nor do they need to define anything on the CLI. They'll
-# just get code that assumes this type exists.
-ac_fn_c_check_type "$LINENO" "unsigned __int128" "ac_cv_type_unsigned___int128" "$ac_includes_default"
-if test "x$ac_cv_type_unsigned___int128" = xyes; then :
-
-$as_echo "#define MMDB_UINT128_IS_BYTE_ARRAY 0" >>confdefs.h
-
-else
-  as_ac_Type=`$as_echo "ac_cv_type_unsigned int __attribute__((mode(TI)))" | $as_tr_sh`
-ac_fn_c_check_type "$LINENO" "unsigned int __attribute__((mode(TI)))" "$as_ac_Type" "$ac_includes_default"
-if eval test \"x\$"$as_ac_Type"\" = x"yes"; then :
-
-$as_echo "#define MMDB_UINT128_IS_BYTE_ARRAY 0" >>confdefs.h
-
-
-$as_echo "#define MMDB_UINT128_USING_MODE 1" >>confdefs.h
-
-else
-
-$as_echo "#define MMDB_UINT128_IS_BYTE_ARRAY 1" >>confdefs.h
-
-fi
-
-fi
-
-
 ac_fn_c_check_type "$LINENO" "boolean" "ac_cv_type_boolean" "$ac_includes_default"
 if test "x$ac_cv_type_boolean" = xyes; then :
 

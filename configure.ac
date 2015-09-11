@@ -39,20 +39,6 @@ AC_C_RESTRICT
 
 AC_CHECK_HEADERS([arpa/inet.h assert.h fcntl.h inttypes.h libgen.h math.h netdb.h netinet/in.h stdarg.h stdbool.h stdint.h stdio.h stdlib.h string.h sys/mman.h sys/socket.h sys/stat.h sys/time.h sys/types.h unistd.h])
 
-# This check is backwards in order to make life easier for people writing
-# extensions in other languages that link to this library. If they want to
-# simply assume that they are using a newish compiler, they don't need to
-# check for this type nor do they need to define anything on the CLI. They'll
-# just get code that assumes this type exists.
-AC_CHECK_TYPE(
-        [unsigned __int128],
-        [AC_DEFINE([MMDB_UINT128_IS_BYTE_ARRAY], [0], [Missing the unsigned __int128 type])],
-        [AC_CHECK_TYPE(
-                [unsigned int __attribute__((mode(TI)))],
-                [AC_DEFINE([MMDB_UINT128_IS_BYTE_ARRAY], [0], [Missing the unsigned __int128 type])
-                 AC_DEFINE([MMDB_UINT128_USING_MODE], [1], [int128 types are available with __attribute__((mode(TI)))])],
-                [AC_DEFINE([MMDB_UINT128_IS_BYTE_ARRAY], [1], [Missing the unsigned __int128 type])])])
-
 AC_CHECK_TYPES([boolean])
 
 AC_CHECK_FUNC(
