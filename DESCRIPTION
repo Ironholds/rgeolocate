@@ -15,6 +15,5 @@ Imports:
     httr
 Suggests:
     testthat,
-    knitr,
-    iptools
+    knitr
 VignetteBuilder: knitr
