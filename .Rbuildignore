@@ -4,3 +4,4 @@
 
 reconf
 LICENSE
+^\.travis\.yml$

@@ -4,6 +4,8 @@ __Author(s:__ Oliver Keyes, Drew Schmidt<br/>
 __License:__ Apache 2.0
 __Status:__ Stable
 
+[![Travis-CI Build Status](https://travis-ci.org/Ironholds/rgeolocate.svg?branch=master)](https://travis-ci.org/Ironholds/rgeolocate)
+
 IP geolocation is a powerful tool to have if you're dealing with web data, and there are a couple of R packages that
 provide access to specific services, such as the legacy rgeoip package
 or Bob Rudis's [ipapi](https://github.com/hrbrmstr/ipapi). They're all spread about and have diffing interfaces,
