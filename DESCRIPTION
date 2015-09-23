@@ -3,7 +3,7 @@ Type: Package
 Title: IP Address Geolocation
 Version: 0.4.1
 Date: 2015-07-25
-Author: Oliver Keyes [aut, cre], Drew Schmidt [aut], Maxmind, Inc. [cph], Pascal Gloor [cph]
+Author: Oliver Keyes [aut, cre], Drew Schmidt [aut], David Robinson [ctb], Maxmind, Inc. [cph], Pascal Gloor [cph]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Copyright: MaxMind, Inc. for the underlying libmaxmminddb library, and the package authors for all other content.
 Description: Connectors to online and offline sources for taking IP addresses and geolocating them to country, city, timezone and other geographic ranges. For individual connectors, see the package index.
