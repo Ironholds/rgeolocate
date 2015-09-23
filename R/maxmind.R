@@ -15,6 +15,8 @@
 #'  \item{region_name}{: the English-language name of the region. Requires a city database.}
 #'  \item{city_name}{: the English-language name of the city. Requires a city database}
 #'  \item{timezone}{: the tzdata-compatible time zone. Requires a city database}
+#'  \item{longitude}{: latitude of location. Requires a city database}
+#'  \item{latitude}{: longitude of location. Requires a city database}
 #'  \item{connection}{: the type of internet connection. Requires a connection type/netspeed database}
 #'}
 #'@details
@@ -24,8 +26,9 @@
 #'types and nothing else, while the city- and country-level files don't contain connection types at all.
 #'
 #'In the event that the file provided does not have the field you have requested (or the IP address does
-#'not have an entry for that field), the string "Unknown" will be returned instead. In the event that the IP
-#'address doesn't have an entry in the file at all, "Unknown" will be returned for every field.
+#'not have an entry for that field), the string "Unknown" (or NA for a numeric field such as latitude or
+#'longitude) will be returned instead. In the event that the IP
+#'address doesn't have an entry in the file at all, "Unknown"/NA will be returned for every field.
 #'
 #'@examples
 #'file <- system.file("extdata","GeoLite2-Country.mmdb", package = "rgeolocate")
@@ -33,7 +36,7 @@
 #'@export
 maxmind <- function(ips, file, fields = c("continent_name", "country_name", "country_code")){
   possible_fields <- c("continent_name", "country_name", "country_code", "region_name",
-                       "city_name", "timezone", "connection")
+                       "city_name", "timezone", "connection", "latitude", "longitude")
   
   if(!all(fields %in% possible_fields)){
     warning("Some field names you have provided are not supported and no data will be retrieved for them. \nThe

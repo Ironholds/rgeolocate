@@ -25,6 +25,10 @@ private:
   std::vector < std::string > timezone(MMDB_s *data, std::vector < std::string >& ip_addresses);
   
   std::vector < std::string > connection(MMDB_s *data, std::vector < std::string >& ip_addresses);
+
+  std::vector < double > latitude(MMDB_s *data, std::vector < std::string >& ip_addresses);
+
+  std::vector < double > longitude(MMDB_s *data, std::vector < std::string >& ip_addresses);
   
   List lookup(std::vector < std::string >& ip_addresses, MMDB_s *mmdb_set, std::vector < std::string > fields);
   

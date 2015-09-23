@@ -31,3 +31,36 @@ test_that("A df of the right values is returned", {
   expect_that(results$country_code[1], equals("ML"))
   expect_that(results$country_name[1],equals("Mali"))
 })
+
+
+test_that("Longitude and latitude can be retrieved", {
+  test_files <- c("GeoIP2-City-Test.mmdb",
+                  "GeoIP2-Precision-City-Test.mmdb")
+  for (test_file in test_files) {
+    infile <- system.file("extdata", test_file, package = "rgeolocate")
+    results <- maxmind("2.125.160.216", infile, c("continent_name", "country_code",
+                                       "country_name", "city_name",
+                                       "latitude", "longitude"))
+    expect_that(results$continent_name[1], equals("Europe"))
+    expect_that(results$country_code[1], equals("GB"))
+    expect_that(results$country_name[1], equals("United Kingdom"))
+    expect_that(results$city_name[1], equals("Boxford"))
+    expect_that(results$latitude[1], equals(51.75))
+    expect_that(results$longitude[1], equals(-1.25))
+  }
+})
+
+
+test_that("Unknown longitude and latitude are returned as NA", {
+  test_files <- c("GeoIP2-Anonymous-IP-Test.mmdb",
+                  "GeoLite2-Country.mmdb")
+  for (test_file in test_files) {
+    infile <- system.file("extdata", test_file, package = "rgeolocate")
+    results <- maxmind("2.125.160.216", infile, c("continent_name", "country_code",
+                                                  "country_name", "city_name",
+                                                  "latitude", "longitude"))
+    expect_that(is.na(results$latitude[1]), is_true())
+    expect_that(is.na(results$longitude[1]), is_true())
+  }
+})
+
