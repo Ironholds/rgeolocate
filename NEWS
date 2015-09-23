@@ -2,6 +2,7 @@ Version 1.0.0 [WIP]
 
 NEW FEATURES
 * freegeoip() is deprecated as the service is too unreliable to be trusted.
+*Added retrieval of longitude and latitude from maxmind databases
 
 DEVELOPMENT
 
