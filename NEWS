@@ -1,10 +1,11 @@
-Version 1.0.0 [WIP]
+Version 0.5.0
 
 NEW FEATURES
 * freegeoip() is deprecated as the service is too unreliable to be trusted.
-*Added retrieval of longitude and latitude from maxmind databases
+* David Robinson has provided code that allows for the retrieval of longitude and latitude from maxmind databases
 
 DEVELOPMENT
+* Changes to the build process should avoid issues on Fedora machines.
 
 Version 0.4.2
 -------------------------------------------------------------------------

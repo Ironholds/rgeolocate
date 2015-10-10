@@ -16,13 +16,13 @@ maxmind(ips, file, fields = c("continent_name", "country_name",
 \itemize{
  \item{continent_name}{: the English-language name of the continent. Requires a country or city database.}
  \item{country_name}{: the English-language name of the country Requires a country or city database.}
- \item{country_code}{: the ISO code of the country. Requires a country or city database}
+ \item{country_code}{: the ISO code of the country. Requires a country or city database.}
  \item{region_name}{: the English-language name of the region. Requires a city database.}
- \item{city_name}{: the English-language name of the city. Requires a city database}
- \item{timezone}{: the tzdata-compatible time zone. Requires a city database}
- \item{longitude}{: latitude of location. Requires a city database}
- \item{latitude}{: longitude of location. Requires a city database}
- \item{connection}{: the type of internet connection. Requires a connection type/netspeed database}
+ \item{city_name}{: the English-language name of the city. Requires a city database.}
+ \item{timezone}{: the tzdata-compatible time zone. Requires a city database.}
+ \item{longitude}{: latitude of location. Requires a city database.}
+ \item{latitude}{: longitude of location. Requires a city database.}
+ \item{connection}{: the type of internet connection. Requires a connection type/netspeed database.}
 }}
 }
 \description{
