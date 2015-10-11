@@ -8,7 +8,7 @@ query_telize <- function(ip){
 }
 
 #'@title Geolocate IP Addresses Through telize.com
-#'@description \href{http://telize.com}{telize.com} provides IP geolocation based
+#'@description \href{http://www.telize.com}{telize.com} provides IP geolocation based
 #'on MaxMind's free downloadable databases (one of which is, distinctly, included in
 #'this package). \code{telize} allows you to query the Telize service to geolocate
 #'IPv4 or IPv6 IP addresses.

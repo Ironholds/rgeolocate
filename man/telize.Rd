@@ -17,7 +17,7 @@ either a data.frame or a list of named vectors, depending on
 the option for \code{as_data_frame}
 }
 \description{
-\href{http://telize.com}{telize.com} provides IP geolocation based
+\href{http://www.telize.com}{telize.com} provides IP geolocation based
 on MaxMind's free downloadable databases (one of which is, distinctly, included in
 this package). \code{telize} allows you to query the Telize service to geolocate
 IPv4 or IPv6 IP addresses.
