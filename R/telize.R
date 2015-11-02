@@ -45,3 +45,39 @@ telize <- function(ip_addresses, as_data_frame = TRUE){
   }
   return(results)
 }
+
+#'@title Obtain and geolocate current (external) client IP address
+#'@description \href{http://www.telize.com}{telize.com} provides IP geolocation based
+#'on MaxMind's free downloadable databases. \code{client_info} uses Telize to determine
+#'the IP address of the current user/client and return the IP address and associated
+#'geolocation info, making it suitable for providing customization (i.e. function
+#'defaults) based on client location data. 
+#'
+#'@param as_data_frame whether to return the results as a data.frame (TRUE)
+#'or a list of named vectors (FALSE). Set to TRUE by default.
+#'
+#'@note This function requires internet access.
+#'
+#'@return either a data.frame or a list of named vectors, depending on
+#'the option for \code{as_data_frame}
+#'
+#'@author Bob Rudis
+#'
+#'@examples
+#'\dontrun{
+#' info <- client_info()
+#'}
+#'@export
+client_info <- function(as_data_frame = TRUE) {
+  
+  results <- content(GET("http://www.telize.com/geoip"),
+                     as = "parsed", type = "application/json")
+
+  if (as_data_frame) {
+    return(data.frame(results, stringsAsFactors=FALSE))
+  }
+  
+  return(results)
+
+}
+
