@@ -21,3 +21,9 @@ test_that("data.frames with errors can be returned from ip-api", {
   expect_that(ncol(result), equals(13))
   expect_that(result$status[1], equals("Error"))
 })
+
+test_that("client_info() works", {
+  result <- client_info()
+  expect_that(is.data.frame(result), equals(TRUE))
+  expect_that(nrow(result), equals(1))
+})
