@@ -37,9 +37,7 @@ The `maxmind()` function is fully vectorised and will happily geolocate around a
 `rgeolocate` also contains bindings to various IP geolocation web APIs; this chunk is still in development and is a wee bit
 unstable. At the moment, there is support for:
 
-* [db-ip.com](http://db-ip.com), through `db_ip()`;
-* [freegeoip.net](http://freegeoip.net), through `freegeoip()`;
-* [ip-api.com](http://ip-api.com), through `ip_api()`, and;
-* [telize.com](http://telize.com), through `telize()`
+* [db-ip.com](http://db-ip.com), through `db_ip()`, and;
+* [ip-api.com](http://ip-api.com), through `ip_api()`.
 
 These are all somewhat different, with different sources for their data and different *amounts* of data. While vectorised, they're going to be a lot slower than `maxmind()`, but are more viable for (say) obtaining information we don't currently extract from the MaxMind databases, or handling IP addresses the free MaxMind databases don't *cover* if you can't obtain the paid ones.

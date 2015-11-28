@@ -1,4 +1,12 @@
+Version 0.6.0
+-------------------------------------------------------------------------
+
+DEVELOPMENT
+* Internal country DB updated.
+* client_info() and other telize-based functionality deprecated, as they have shut down their public API.
+
 Version 0.5.0
+-------------------------------------------------------------------------
 
 NEW FEATURES
 * freegeoip() is deprecated as the service is too unreliable to be trusted.
