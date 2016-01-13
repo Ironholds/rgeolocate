@@ -25,12 +25,18 @@
 #'appropriate for different provided files; the connection type databases, for example, contain connection
 #'types and nothing else, while the city- and country-level files don't contain connection types at all.
 #'
+#'\code{rgeolocate} ships with a country-level database (accessing it can be seen in the examples). If
+#'you need city-level data, or other MaxMind databases, you'll need to download the \code{.mmdb} files
+#'yourself - for CRAN and/or copyright reasons, depending, we cannot include them.
+#'
 #'In the event that the file provided does not have the field you have requested (or the IP address does
 #'not have an entry for that field), the string "Unknown" (or NA for a numeric field such as latitude or
 #'longitude) will be returned instead. In the event that the IP
 #'address doesn't have an entry in the file at all, "Unknown"/NA will be returned for every field.
 #'
 #'@examples
+#'
+#'# An example, using the country-level dataset shipped with rgeolocate.
 #'file <- system.file("extdata","GeoLite2-Country.mmdb", package = "rgeolocate")
 #'results <- maxmind("196.200.60.51", file, "country_code")
 #'@export

@@ -30,7 +30,9 @@ results <- maxmind("196.200.60.51", file, c("continent_name", "country_code", "c
 results
 ```
 
-The `maxmind()` function is fully vectorised and will happily geolocate around a million IP addresses in just under 5 seconds.
+The `maxmind()` function is fully vectorised and will happily geolocate around a million IP addresses in just under 5 seconds. Only the country data, as said, is shipped with `rgeolocate`: if you'd like
+another database, you should download it yourself from the MaxMind website, and point the `file`
+argument of `maxmind()` to the downloaded database.
 
 ## Web APIs
 
