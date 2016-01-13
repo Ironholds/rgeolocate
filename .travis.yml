@@ -8,6 +8,9 @@ env:
  global:
    - CRAN: http://cran.rstudio.com
 
+r_packages:
+   - rmarkdown
+
 notifications:
   email:
     on_success: change
