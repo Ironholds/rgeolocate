@@ -4,6 +4,7 @@ Version 0.6.1 [WIP]
 DEVELOPMENT
 * The vignette, and documentation of the maxmind function, have been improved to make explicit
 the datasets rgeolocate ships with (#25)
+* Added ability to retrieve city_geoname_id from maxmind databases
 
 Version 0.6.0
 -------------------------------------------------------------------------
