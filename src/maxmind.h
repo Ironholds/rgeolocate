@@ -21,6 +21,8 @@ private:
   std::vector < std::string > region_name(MMDB_s *data, std::vector < std::string >& ip_addresses);
   
   std::vector < std::string > city_name(MMDB_s *data, std::vector < std::string >& ip_addresses);
+
+  std::vector < int > city_geoname_id(MMDB_s *data, std::vector < std::string >& ip_addresses);
   
   std::vector < std::string > timezone(MMDB_s *data, std::vector < std::string >& ip_addresses);
   

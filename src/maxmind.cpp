@@ -75,6 +75,43 @@ static std::vector <double> mmdb_getdouble(MMDB_s *data, const std::vector< std:
 }
 
 
+
+static std::vector <int> mmdb_getint(MMDB_s *data, const std::vector< std::string > &ip_addresses, ...){
+  int input_size = ip_addresses.size();
+  std::vector < int > output(input_size);
+  
+  int run_status;
+  int lookup_error;
+  int gai_error;
+  MMDB_lookup_result_s result;
+  MMDB_entry_data_s entry_data;
+  va_list path;
+  
+  
+  for(int i = 0; i < input_size; i++){
+    if((i % 10000) == 0){
+      Rcpp::checkUserInterrupt();
+    }
+    
+    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
+    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
+      output[i] = NA_REAL;
+    } else {
+      va_start(path, ip_addresses);
+      run_status = MMDB_vget_value(&result.entry, &entry_data, path);
+      va_end(path);
+      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
+        output[i] = NA_INTEGER;
+      } else {
+        output[i] = entry_data.uint32;
+      }
+    }
+  }
+  
+  return output;
+}
+
+
 std::vector < std::string > maxmind_bindings::continent_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
   return mmdb_getstring(data, ip_addresses, "continent", "names", "en", NULL);
 }
@@ -92,7 +129,7 @@ std::vector < std::string > maxmind_bindings::region_name(MMDB_s *data, std::vec
 }
 
 std::vector < std::string > maxmind_bindings::city_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
-  return mmdb_getstring(data, ip_addresses,"city", "names", "en", NULL);
+  return mmdb_getstring(data, ip_addresses, "city", "names", "en", NULL);
 }
 
 std::vector < std::string > maxmind_bindings::timezone(MMDB_s *data, std::vector < std::string >& ip_addresses){
@@ -101,6 +138,10 @@ std::vector < std::string > maxmind_bindings::timezone(MMDB_s *data, std::vector
 
 std::vector < std::string > maxmind_bindings::connection(MMDB_s *data, std::vector < std::string >& ip_addresses){
   return mmdb_getstring(data, ip_addresses, "connection_type", NULL);
+}
+
+std::vector < int > maxmind_bindings::city_geoname_id(MMDB_s *data, std::vector < std::string >& ip_addresses){
+  return mmdb_getint(data, ip_addresses, "city", "geoname_id", NULL);
 }
 
 std::vector < double > maxmind_bindings::latitude(MMDB_s *data, std::vector < std::string >& ip_addresses){
@@ -136,6 +177,8 @@ List maxmind_bindings::lookup(std::vector < std::string >& ip_addresses, MMDB_s 
       output.push_back(longitude(mmdb_set, ip_addresses));
     } else if(fields[i] == "connection"){
       output.push_back(connection(mmdb_set, ip_addresses));
+    } else if (fields[i] == "city_geoname_id") {
+      output.push_back(city_geoname_id(mmdb_set, ip_addresses));
     }
   }
   
