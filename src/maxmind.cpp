@@ -1,10 +1,9 @@
 #include "maxmind.h"
 #include <stdarg.h>
 
-
-static std::vector <std::string> mmdb_getstring(MMDB_s *data, const std::vector< std::string > &ip_addresses, ...){
+static CharacterVector mmdb_getstring(MMDB_s *data, const CharacterVector ip_addresses, ...){
   int input_size = ip_addresses.size();
-  std::vector < std::string > output(input_size);
+  CharacterVector output(input_size);
   
   int run_status;
   int lookup_error;
@@ -18,19 +17,22 @@ static std::vector <std::string> mmdb_getstring(MMDB_s *data, const std::vector<
     if((i % 10000) == 0){
       Rcpp::checkUserInterrupt();
     }
-    
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
-    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
-      output[i] = "Unknown";
+    if(CharacterVector::is_na(ip_addresses[i])){
+      output[i] = NA_STRING;
     } else {
-      va_start(path, ip_addresses);
-      run_status = MMDB_vget_value(&result.entry, &entry_data, path);
-      va_end(path);
-      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
-        output[i] ="Unknown";
+      result = MMDB_lookup_string(data, ip_addresses[i].operator char *(), &lookup_error, &gai_error);
+      if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
+        output[i] = NA_STRING;
       } else {
-        std::string out(entry_data.utf8_string, 0, entry_data.data_size);
-        output[i] = out;
+        va_start(path, ip_addresses);
+        run_status = MMDB_vget_value(&result.entry, &entry_data, path);
+        va_end(path);
+        if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
+          output[i] = NA_STRING;
+        } else {
+          std::string out(entry_data.utf8_string, 0, entry_data.data_size);
+          output[i] = out;
+        }
       }
     }
   }
@@ -38,8 +40,7 @@ static std::vector <std::string> mmdb_getstring(MMDB_s *data, const std::vector<
   return output;
 }
 
-
-static std::vector <double> mmdb_getdouble(MMDB_s *data, const std::vector< std::string > &ip_addresses, ...){
+static std::vector <double> mmdb_getdouble(MMDB_s *data, const CharacterVector ip_addresses, ...){
   int input_size = ip_addresses.size();
   std::vector < double > output(input_size);
   
@@ -56,7 +57,7 @@ static std::vector <double> mmdb_getdouble(MMDB_s *data, const std::vector< std:
       Rcpp::checkUserInterrupt();
     }
     
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
+    result = MMDB_lookup_string(data, ip_addresses[i].operator char *(), &lookup_error, &gai_error);
     if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
       output[i] = NA_REAL;
     } else {
@@ -74,9 +75,7 @@ static std::vector <double> mmdb_getdouble(MMDB_s *data, const std::vector< std:
   return output;
 }
 
-
-
-static std::vector <int> mmdb_getint(MMDB_s *data, const std::vector< std::string > &ip_addresses, ...){
+static std::vector <int> mmdb_getint(MMDB_s *data, const CharacterVector ip_addresses, ...){
   int input_size = ip_addresses.size();
   std::vector < int > output(input_size);
   
@@ -93,7 +92,7 @@ static std::vector <int> mmdb_getint(MMDB_s *data, const std::vector< std::strin
       Rcpp::checkUserInterrupt();
     }
     
-    result = MMDB_lookup_string(data, ip_addresses[i].c_str(), &lookup_error, &gai_error);
+    result = MMDB_lookup_string(data, ip_addresses[i].operator char *(), &lookup_error, &gai_error);
     if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
       output[i] = NA_REAL;
     } else {
@@ -112,47 +111,47 @@ static std::vector <int> mmdb_getint(MMDB_s *data, const std::vector< std::strin
 }
 
 
-std::vector < std::string > maxmind_bindings::continent_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
+CharacterVector maxmind_bindings::continent_name(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "continent", "names", "en", NULL);
 }
 
-std::vector < std::string > maxmind_bindings::country_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
+CharacterVector maxmind_bindings::country_name(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "country", "names", "en", NULL);
 }
 
-std::vector < std::string > maxmind_bindings::country_code(MMDB_s *data, std::vector < std::string >& ip_addresses){
+CharacterVector maxmind_bindings::country_code(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "country", "iso_code", NULL);
 }
 
-std::vector < std::string > maxmind_bindings::region_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
+CharacterVector maxmind_bindings::region_name(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "subdivisions", "0", "names", "en", NULL);
 }
 
-std::vector < std::string > maxmind_bindings::city_name(MMDB_s *data, std::vector < std::string >& ip_addresses){
+CharacterVector maxmind_bindings::city_name(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "city", "names", "en", NULL);
 }
 
-std::vector < std::string > maxmind_bindings::timezone(MMDB_s *data, std::vector < std::string >& ip_addresses){
+CharacterVector maxmind_bindings::timezone(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "location", "time_zone", NULL);
 }
 
-std::vector < std::string > maxmind_bindings::connection(MMDB_s *data, std::vector < std::string >& ip_addresses){
+CharacterVector maxmind_bindings::connection(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "connection_type", NULL);
 }
 
-std::vector < int > maxmind_bindings::city_geoname_id(MMDB_s *data, std::vector < std::string >& ip_addresses){
+std::vector < int > maxmind_bindings::city_geoname_id(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getint(data, ip_addresses, "city", "geoname_id", NULL);
 }
 
-std::vector < double > maxmind_bindings::latitude(MMDB_s *data, std::vector < std::string >& ip_addresses){
+std::vector < double > maxmind_bindings::latitude(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getdouble(data, ip_addresses, "location", "latitude", NULL);
 }
 
-std::vector < double > maxmind_bindings::longitude(MMDB_s *data, std::vector < std::string >& ip_addresses){
+std::vector < double > maxmind_bindings::longitude(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getdouble(data, ip_addresses, "location", "longitude", NULL);
 }
 
-List maxmind_bindings::lookup(std::vector < std::string >& ip_addresses, MMDB_s *mmdb_set,
+List maxmind_bindings::lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set,
                                                      std::vector < std::string > fields){
   
   List output;
@@ -185,7 +184,7 @@ List maxmind_bindings::lookup(std::vector < std::string >& ip_addresses, MMDB_s 
   return output;
 }
 
-List maxmind_bindings::call_maxmind(std::vector < std::string > ip_addresses, const char* file,
+List maxmind_bindings::call_maxmind(CharacterVector ip_addresses, const char* file,
                                     std::vector < std::string > fields){
   
   //Open file
@@ -197,12 +196,11 @@ List maxmind_bindings::call_maxmind(std::vector < std::string > ip_addresses, co
   }
   
   //Create references and holding
-  std::vector < std::string >& ip_ref = ip_addresses;
   int input_size = ip_addresses.size();
   IntegerVector rownames(input_size);
   rownames = Rcpp::seq(1,input_size);
   
-  List output = lookup(ip_ref, &geo_file, fields);
+  List output = lookup(ip_addresses, &geo_file, fields);
   output.attr("class") = "data.frame";
   output.attr("names") = fields;
   output.attr("row.names") = rownames;

@@ -6,13 +6,13 @@ test_that("non-existent files are detected", {
 test_that("non-existent IPs are detected", {
   file <- system.file("extdata","GeoLite2-Country.mmdb", package = "rgeolocate")
   results <- maxmind("foo",file, "country_name")
-  expect_that(results[1,1], equals("Unknown"))
+  expect_true(is.na(results[1,1]))
 })
 
 test_that("IPs without entries are detected", {
   file <- system.file("extdata","GeoLite2-Country.mmdb", package = "rgeolocate")
   results <- maxmind("10.68.16.31",file, "country_name")
-  expect_that(results[1,1], equals("Unknown"))
+  expect_true(is.na(results[1,1]))
 })
 
 test_that("A df of the right dimensions is returned", {
