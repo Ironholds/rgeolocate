@@ -1,12 +1,15 @@
-Version 0.7.0 [WIP]
+Version 0.7.0
 -------------------------------------------------------------------------
+
+NEW FEATURES
+* Added feature to retrieve city_geoname_id from maxmind databases
+* Unidenfitiable IP addresses will return NAs from maxmind()
 
 DEVELOPMENT
 * The vignette, and documentation of the maxmind function, have been improved to make explicit
 the datasets rgeolocate ships with (#25)
-
-NEW FEATURES
-* Added feature to retrieve city_geoname_id from maxmind databases
+* MaxMind free datasets updated.
+* Tests have been rebuilt to be tolerant of server-side problems in the case of remote API calls.
 
 Version 0.6.0
 -------------------------------------------------------------------------
