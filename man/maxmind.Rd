@@ -42,9 +42,8 @@ you need city-level data, or other MaxMind databases, you'll need to download th
 yourself - for CRAN and/or copyright reasons, depending, we cannot include them.
 
 In the event that the file provided does not have the field you have requested (or the IP address does
-not have an entry for that field), the string "Unknown" (or NA for a numeric field such latitude,
-longitude, or city_geoname_id) will be returned instead. In the event that the IP
-address doesn't have an entry in the file at all, "Unknown"/NA will be returned for every field.
+not have an entry for that field), NA will be returned instead. In the event that the IP
+address doesn't have an entry in the file at all, NA will be returned for every field.
 }
 \examples{
 
