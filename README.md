@@ -12,7 +12,7 @@ or Bob Rudis's [ipapi](https://github.com/hrbrmstr/ipapi). They're all spread ab
 styles and requirements.
 
 `rgeolocate` aims to be a single generalised package for geolocation; if you have a source you'd like to pull from, the
-goal is that `rgeolocate` will provide a binding to it. As of the 0.4.0 release, it contains:
+goal is that `rgeolocate` will provide a binding to it. As of the 0.7.0 release, it contains:
 
 1. A binding to the binary MaxMind databases;
 2. Wrappers around multiple online geolocation services ([see the vignette](https://github.com/Ironholds/rgeolocate/blob/master/vignettes/Introduction_to_rgeolocate.Rmd)
@@ -30,7 +30,7 @@ For the latest CRAN release:
 
 For the development version:
 
-    devtools::install_github("ironholds/rgeolocate", ref = "0.6.0")
+    devtools::install_github("ironholds/rgeolocate", ref = "0.7.0")
     
 ### Dependencies
 `rgeolocate` depends on [httr](http://cran.r-project.org/web/packages/httr/index.html) for the bindings
