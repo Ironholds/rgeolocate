@@ -10,7 +10,7 @@ env:
 
 r_packages:
    - rmarkdown
-
+   - testthat
 notifications:
   email:
     on_success: change
