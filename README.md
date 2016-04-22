@@ -34,6 +34,6 @@ For the development version:
     devtools::install_github("ironholds/rgeolocate", ref = "0.7.0")
     
 ### Dependencies
-`rgeolocate` depends on [httr](http://cran.r-project.org/web/packages/httr/index.html) for the bindings
+`rgeolocate` depends on [httr](https://cran.r-project.org/package=httr) for the bindings
 to web databases; other than that, just base R! Thanks to the work of Drew Schmidt, `rgeolocate` includes the underlying
 MaxMind library and its dependencies.
