@@ -1,3 +1,9 @@
+Version 0.8.0
+-------------------------------------------------------------------------
+
+DEVELOPMENT
+* Using longer delay for requests to ip-api.com due to new API rate limits.
+
 Version 0.7.0
 -------------------------------------------------------------------------
 
