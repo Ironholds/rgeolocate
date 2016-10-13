@@ -30,7 +30,7 @@ static CharacterVector mmdb_getstring(MMDB_s *data, const CharacterVector ip_add
         if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
           output[i] = NA_STRING;
         } else {
-          std::string out(entry_data.utf8_string, 0, entry_data.data_size);
+          std::string out(entry_data.intunion.utf8_string, 0, entry_data.data_size);
           output[i] = out;
         }
       }
@@ -67,7 +67,7 @@ static std::vector <double> mmdb_getdouble(MMDB_s *data, const CharacterVector i
       if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
         output[i] = NA_REAL;
       } else {
-        output[i] = entry_data.double_value;
+        output[i] = entry_data.intunion.double_value;
       }
     }
   }
@@ -102,7 +102,7 @@ static std::vector <int> mmdb_getint(MMDB_s *data, const CharacterVector ip_addr
       if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
         output[i] = NA_INTEGER;
       } else {
-        output[i] = entry_data.uint32;
+        output[i] = entry_data.intunion.uint32;
       }
     }
   }
