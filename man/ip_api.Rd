@@ -12,8 +12,8 @@ ip_api(ip_addresses, as_data_frame = TRUE, delay = FALSE)
 \item{as_data_frame}{whether to return the results as a data.frame or not.
 Set to TRUE by default.}
 
-\item{delay}{whether or not to delay each request by 100ms. ip-api.com has a
-maximum threshold of 2,500 requests a minute; if you're parallelising calls, you
+\item{delay}{whether or not to delay each request by 400ms. ip-api.com has a
+maximum threshold of 150 requests a minute; if you're parallelising calls, you
 might run into this. \code{delay} allows you to set a delay between requests, taking
 advantage of parallelisation while avoiding running into this threshold. Set to
 FALSE by default}
