@@ -141,7 +141,7 @@ int32_t IP2Location_DB_set_shared_memory(FILE *filehandle)
     return 0;
 }
 #else
-#ifdef WIN32
+#ifdef _WIN32
 int32_t IP2Location_DB_set_shared_memory(FILE *filehandle)
 {
     struct stat statbuf;
@@ -223,14 +223,14 @@ int32_t IP2Location_DB_close(FILE *filehandle)
     {
         if( cache_shm_ptr != NULL )
         {
-#ifndef	WIN32
+#ifndef	_WIN32
             if(fstat(fileno(filehandle), &statbuf) == 0)
             {
                 munmap(cache_shm_ptr, statbuf.st_size);
             }
             close(shm_fd);
 #else
-#ifdef WIN32
+#ifdef _WIN32
             UnmapViewOfFile(cache_shm_ptr);
             CloseHandle(shm_fd);
 #endif
@@ -241,13 +241,13 @@ int32_t IP2Location_DB_close(FILE *filehandle)
     return 0;
 }
 
-#ifndef	WIN32
+#ifndef	_WIN32
 void IP2Location_DB_del_shm()
 {
     shm_unlink(IP2LOCATION_SHM);
 }
 #else
-#ifdef WIN32
+#ifdef _WIN32
 void IP2Location_DB_del_shm()
 {
 }

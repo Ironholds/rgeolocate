@@ -17,6 +17,7 @@
  */
 #ifndef HAVE_IP2LOCATION_H
 #define HAVE_IP2LOCATION_H
+#include "maxminddb_config.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,13 +29,13 @@ extern "C" {
 #include <stdlib.h>
 #endif
 
-#ifdef WIN32
+#ifdef _WIN32
 #define int16_t short
 #define int32_t int
 #define int64_t long long int
 #endif
 
-#ifndef WIN32
+#ifndef _WIN32
 #include <stdint.h>
 #else
 
@@ -55,7 +56,7 @@ extern "C" {
 #endif
 
 #ifndef uint32_t
-#ifndef WIN32
+#ifndef _WIN32
 #define uint32_t int
 #else
 #define uint32_t unsigned int
