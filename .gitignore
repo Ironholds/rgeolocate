@@ -10,3 +10,4 @@ src/Makevars
 *.log
 *.status
 
+*.DS_Store
