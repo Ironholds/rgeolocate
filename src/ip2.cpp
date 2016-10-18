@@ -4,12 +4,17 @@ CharacterVector ip2_wrapper::country_code(std::vector <IP2LocationRecord*>& resu
                                           unsigned int& in_size){
   
   CharacterVector output(in_size);
-  
+  std::string holding;
   for(unsigned int i = 0; i < in_size; i++){
     if(results[i] == NULL){
       output[i] = NA_STRING;
     } else {
-      output[i] = results[i]->country_short;
+      holding = results[i]->country_short;
+      if(holding == "-"){
+        output[i] = NA_STRING;
+      } else {
+        output[i] = holding;
+      }
     }
   }
   
@@ -20,12 +25,17 @@ CharacterVector ip2_wrapper::country_name(std::vector <IP2LocationRecord*>& resu
                                           unsigned int& in_size){
   
   CharacterVector output(in_size);
-  
+  std::string holding;
   for(unsigned int i = 0; i < in_size; i++){
     if(results[i] == NULL){
       output[i] = NA_STRING;
     } else {
-      output[i] = results[i]->country_long;
+      holding = results[i]->country_long;
+      if(holding == "-" || holding == "INVALID IPV4 ADDRESS"){
+        output[i] = NA_STRING;
+      } else {
+        output[i] = holding;
+      }
     }
   }
   
