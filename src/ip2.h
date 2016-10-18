@@ -1,5 +1,5 @@
 #include <Rcpp.h>
-#include "IP2location.h"
+#include "IP2Location.h"
 using namespace Rcpp;
 
 namespace ip2_wrapper {
