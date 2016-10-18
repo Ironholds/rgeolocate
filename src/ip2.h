@@ -27,15 +27,25 @@ namespace ip2_wrapper {
   CharacterVector netspeed(std::vector <IP2LocationRecord*>& results, int& in_size);
   
   CharacterVector idd(std::vector <IP2LocationRecord*>& results, int& in_size);
-// char *areacode;
-// char *weatherstationcode;
-// char *weatherstationname;
-// char *mcc;
-// char *mnc;
-// char *mobilebrand;
-// float elevation;
-// char *usagetype;
-
+  
+  CharacterVector area_code(std::vector <IP2LocationRecord*>& results, int& in_size);
+  
+  CharacterVector ws_code(std::vector <IP2LocationRecord*>& results, int& in_size);
+  
+  CharacterVector ws_name(std::vector <IP2LocationRecord*>& results, int& in_size);
+  
+  CharacterVector mcc(std::vector <IP2LocationRecord*>& results, int& in_size);
+  
+  CharacterVector mnc(std::vector <IP2LocationRecord*>& results, int& in_size);
+  
+  CharacterVector mobile_brand(std::vector <IP2LocationRecord*>& results, int& in_size);
+  
+  NumericVector elevation(std::vector <IP2LocationRecord*>& results, int& in_size);
+  
+  CharacterVector usage_type(std::vector <IP2LocationRecord*>& results, int& in_size);
+  
+  void cleanup(std::vector <IP2LocationRecord*>& results);
+  
   List process_results(CharacterVector& fields, std::vector <IP2LocationRecord*>& results);
   
   DataFrame ip_location(CharacterVector ip_addresses, CharacterVector fields,
