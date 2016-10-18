@@ -52,7 +52,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // ip2location_
-DataFrame ip2location_(CharacterVector ips, CharacterVector fields, std::string file);
+List ip2location_(CharacterVector ips, CharacterVector fields, std::string file);
 RcppExport SEXP rgeolocate_ip2location_(SEXP ipsSEXP, SEXP fieldsSEXP, SEXP fileSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

@@ -1,6 +1,5 @@
 #include "ip2.h"
 
-
 CharacterVector ip2_wrapper::country_code(std::vector <IP2LocationRecord*>& results,
                                           unsigned int& in_size){
   
@@ -18,7 +17,7 @@ CharacterVector ip2_wrapper::country_code(std::vector <IP2LocationRecord*>& resu
 }
 
 CharacterVector ip2_wrapper::country_name(std::vector <IP2LocationRecord*>& results,
-                                          int& in_size){
+                                          unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -33,7 +32,7 @@ CharacterVector ip2_wrapper::country_name(std::vector <IP2LocationRecord*>& resu
   return output;
 }
 
-CharacterVector ip2_wrapper::region(std::vector <IP2LocationRecord*>& results, int& in_size){
+CharacterVector ip2_wrapper::region(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -48,7 +47,7 @@ CharacterVector ip2_wrapper::region(std::vector <IP2LocationRecord*>& results, i
   return output;
 }
 
-CharacterVector ip2_wrapper::city(std::vector <IP2LocationRecord*>& results, int& in_size){
+CharacterVector ip2_wrapper::city(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -63,7 +62,7 @@ CharacterVector ip2_wrapper::city(std::vector <IP2LocationRecord*>& results, int
   return output;
 }
 
-CharacterVector ip2_wrapper::isp(std::vector <IP2LocationRecord*>& results, int& in_size){
+CharacterVector ip2_wrapper::isp(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -78,7 +77,7 @@ CharacterVector ip2_wrapper::isp(std::vector <IP2LocationRecord*>& results, int&
   return output;
 }
 
-NumericVector ip2_wrapper::lat(std::vector <IP2LocationRecord*>& results, int& in_size){
+NumericVector ip2_wrapper::lat(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   NumericVector output(in_size);
   
@@ -93,7 +92,7 @@ NumericVector ip2_wrapper::lat(std::vector <IP2LocationRecord*>& results, int& i
   return output;
 }
 
-NumericVector ip2_wrapper::lng(std::vector <IP2LocationRecord*>& results, int& in_size){
+NumericVector ip2_wrapper::lng(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   NumericVector output(in_size);
   
@@ -108,7 +107,7 @@ NumericVector ip2_wrapper::lng(std::vector <IP2LocationRecord*>& results, int& i
   return output;
 }
 
-CharacterVector ip2_wrapper::domain(std::vector <IP2LocationRecord*>& results, int& in_size){
+CharacterVector ip2_wrapper::domain(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -123,7 +122,7 @@ CharacterVector ip2_wrapper::domain(std::vector <IP2LocationRecord*>& results, i
   return output;
 }
 
-CharacterVector ip2_wrapper::zipcode(std::vector <IP2LocationRecord*>& results, int& in_size){
+CharacterVector ip2_wrapper::zipcode(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -138,7 +137,7 @@ CharacterVector ip2_wrapper::zipcode(std::vector <IP2LocationRecord*>& results, 
   return output;
 }
 
-CharacterVector ip2_wrapper::tz(std::vector <IP2LocationRecord*>& results, int& in_size){
+CharacterVector ip2_wrapper::tz(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -153,7 +152,7 @@ CharacterVector ip2_wrapper::tz(std::vector <IP2LocationRecord*>& results, int& 
   return output;
 }
 
-CharacterVector ip2_wrapper::netspeed(std::vector <IP2LocationRecord*>& results, int& in_size){
+CharacterVector ip2_wrapper::netspeed(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -168,7 +167,7 @@ CharacterVector ip2_wrapper::netspeed(std::vector <IP2LocationRecord*>& results,
   return output;
 }
 
-CharacterVector ip2_wrapper::idd(std::vector <IP2LocationRecord*>& results, int& in_size){
+CharacterVector ip2_wrapper::idd(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   CharacterVector output(in_size);
   
@@ -182,23 +181,167 @@ CharacterVector ip2_wrapper::idd(std::vector <IP2LocationRecord*>& results, int&
   
   return output;
 }
-// char *areacode;
-// char *weatherstationcode;
-// char *weatherstationname;
-// char *mcc;
-// char *mnc;
-// char *mobilebrand;
-// float elevation;
-// char *usagetype;
 
-List ip2_wrapper::process_results(CharacterVector& fields, std::vector <IP2LocationRecord*>& results){
+CharacterVector ip2_wrapper::area_code(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+  
+  CharacterVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_STRING;
+    } else {
+      output[i] = results[i]->areacode;
+    }
+  }
+  
+  return output;
+}
+
+CharacterVector ip2_wrapper::ws_code(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+  CharacterVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_STRING;
+    } else {
+      output[i] = results[i]->weatherstationcode;
+    }
+  }
+  
+  return output;
+}
+
+CharacterVector ip2_wrapper::ws_name(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+  CharacterVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_STRING;
+    } else {
+      output[i] = results[i]->weatherstationname;
+    }
+  }
+  
+  return output;
+}
+
+CharacterVector ip2_wrapper::mcc(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+  CharacterVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_STRING;
+    } else {
+      output[i] = results[i]->mcc;
+    }
+  }
+  
+  return output;
+}
+
+CharacterVector ip2_wrapper::mnc(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+  CharacterVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_STRING;
+    } else {
+      output[i] = results[i]->mnc;
+    }
+  }
+  
+  return output;
+}
+
+CharacterVector ip2_wrapper::mobile_brand(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+  CharacterVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_STRING;
+    } else {
+      output[i] = results[i]->mobilebrand;
+    }
+  }
+  
+  return output;
+}
+
+NumericVector ip2_wrapper::elevation(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+  NumericVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_REAL;
+    } else {
+      output[i] = results[i]->elevation;
+    }
+  }
+  
+  return output;
+}
+
+CharacterVector ip2_wrapper::usage_type(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+  CharacterVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_STRING;
+    } else {
+      output[i] = results[i]->usagetype;
+    }
+  }
+  
+  return output;
+}
+
+List ip2_wrapper::process_results(CharacterVector fields,
+                                  std::vector <IP2LocationRecord*>& results){
   
   List output;
   unsigned int in_size = results.size();
+
   for(unsigned int i = 0; i < fields.size(); i++){
-    
     if(fields[i] == "country_code"){
       output.push_back(country_code(results, in_size));
+    } else if(fields[i] == "country_name"){
+      output.push_back(country_name(results, in_size));
+    } else if(fields[i] == "region"){
+      output.push_back(region(results, in_size));
+    } else if(fields[i] == "city"){
+      output.push_back(city(results, in_size));
+    } else if(fields[i] == "isp"){
+      output.push_back(isp(results, in_size));
+    } else if(fields[i] == "lat"){
+      output.push_back(lat(results, in_size));
+    } else if(fields[i] == "long"){
+      output.push_back(lng(results, in_size));
+    } else if(fields[i] == "domain"){
+      output.push_back(domain(results, in_size));
+    } else if(fields[i] == "area_code"){
+      output.push_back(zipcode(results, in_size));
+    } else if(fields[i] == "timezone"){
+      output.push_back(tz(results, in_size));
+    } else if(fields[i] == "netspeed"){
+      output.push_back(netspeed(results, in_size));
+    } else if(fields[i] == "international_code"){
+      output.push_back(idd(results, in_size));
+    } else if(fields[i] == "area_code"){
+      output.push_back(area_code(results, in_size));
+    } else if(fields[i] == "station_code"){
+      output.push_back(ws_code(results, in_size));
+    } else if(fields[i] == "station_name"){
+      output.push_back(ws_name(results, in_size));
+    } else if(fields[i] == "mcc"){
+      output.push_back(mcc(results, in_size));
+    } else if(fields[i] == "mnc"){
+      output.push_back(mnc(results, in_size));
+    } else if(fields[i] == "mobile_brand"){
+      output.push_back(mobile_brand(results, in_size));
+    } else if(fields[i] == "elevation"){
+      output.push_back(elevation(results, in_size));
+    } else if(fields[i] == "usage_type"){
+      output.push_back(usage_type(results, in_size));
     }
   }
   
@@ -206,8 +349,8 @@ List ip2_wrapper::process_results(CharacterVector& fields, std::vector <IP2Locat
   
 }
 
-DataFrame ip2_wrapper::ip_location(CharacterVector ip_addresses, CharacterVector fields,
-                                   std::string file){
+List ip2_wrapper::ip_location(CharacterVector ip_addresses, CharacterVector fields,
+                              std::string file){
   
   // Open file
   IP2Location* loc_obj = IP2Location_open((char*)file.c_str());
@@ -228,12 +371,23 @@ DataFrame ip2_wrapper::ip_location(CharacterVector ip_addresses, CharacterVector
     
   }
   
-  // Loop to free
-  for(unsigned int i = 0; i < input_size; i++){
+  // Generate results
+  IntegerVector rownames(input_size);
+  rownames = Rcpp::seq(1,input_size);
+  
+  // Format as df
+  List output = process_results(fields, x);
+  output.attr("class") = "data.frame";
+  output.attr("names") = fields;
+  output.attr("row.names") = rownames;
+  
+  // Free db values
+  for(unsigned int i = 0; i < x.size(); i++){
     IP2Location_free_record(x[i]);
   }
+  
   // Close file
   IP2Location_close(loc_obj);
   
-  return DataFrame::create();
+  return output;
 }
