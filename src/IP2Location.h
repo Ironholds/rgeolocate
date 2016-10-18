@@ -109,7 +109,7 @@ extern "C" {
 
 #define INVALID_IPV6_ADDRESS "INVALID IPV6 ADDRESS"
 #define INVALID_IPV4_ADDRESS "INVALID IPV4 ADDRESS"
-#define  NOT_SUPPORTED "This parameter is unavailable for selected data file. Please upgrade the data file."
+#define NOT_SUPPORTED "This parameter is unavailable for selected data file. Please upgrade the data file."
 
 
 typedef struct
