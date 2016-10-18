@@ -4,15 +4,134 @@ using namespace Rcpp;
 
 namespace ip2_wrapper {
 
+  CharacterVector country_code(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
+    
+    CharacterVector output(in_size);
+    
+    for(unsigned int i = 0; i < in_size; i++){
+      if(results[i] == NULL){
+        output[i] = NA_STRING;
+      } else {
+        output[i] = results[i]->country_short;
+      }
+    }
+    
+    return output;
+  }
+
+  CharacterVector country_name(std::vector <IP2LocationRecord*>& results, int& in_size){
+    
+    CharacterVector output(in_size);
+    
+    for(unsigned int i = 0; i < in_size; i++){
+      if(results[i] == NULL){
+        output[i] = NA_STRING;
+      } else {
+        output[i] = results[i]->country_long;
+      }
+    }
+    
+    return output;
+  }
+
+  CharacterVector region(std::vector <IP2LocationRecord*>& results, int& in_size){
+    
+    CharacterVector output(in_size);
+    
+    for(unsigned int i = 0; i < in_size; i++){
+      if(results[i] == NULL){
+        output[i] = NA_STRING;
+      } else {
+        output[i] = results[i]->region;
+      }
+    }
+    
+    return output;
+  }
+
+  CharacterVector city(std::vector <IP2LocationRecord*>& results, int& in_size){
+    
+    CharacterVector output(in_size);
+    
+    for(unsigned int i = 0; i < in_size; i++){
+      if(results[i] == NULL){
+        output[i] = NA_STRING;
+      } else {
+        output[i] = results[i]->city;
+      }
+    }
+    
+    return output;
+  }
+
+CharacterVector isp(std::vector <IP2LocationRecord*>& results, int& in_size){
+  
+  CharacterVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_STRING;
+    } else {
+      output[i] = results[i]->isp;
+    }
+  }
+  
+  return output;
+}
+
+NumericVector lat(std::vector <IP2LocationRecord*>& results, int& in_size){
+  
+  NumericVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_REAL;
+    } else {
+      output[i] = results[i]->latitude;
+    }
+  }
+  
+  return output;
+}
+
+NumericVector lng(std::vector <IP2LocationRecord*>& results, int& in_size){
+  
+  NumericVector output(in_size);
+  
+  for(unsigned int i = 0; i < in_size; i++){
+    if(results[i] == NULL){
+      output[i] = NA_REAL;
+    } else {
+      output[i] = results[i]->longitude;
+    }
+  }
+  
+  return output;
+}
+
+
+// char *domain;
+// char *zipcode;
+// char *timezone;
+// char *netspeed;
+// char *iddcode;
+// char *areacode;
+// char *weatherstationcode;
+// char *weatherstationname;
+// char *mcc;
+// char *mnc;
+// char *mobilebrand;
+// float elevation;
+// char *usagetype;
 
   List process_results(CharacterVector& fields, std::vector <IP2LocationRecord*>& results){
     
     List output;
-    
+    unsigned int in_size = results.size();
     for(unsigned int i = 0; i < fields.size(); i++){
       
-      if(fields[i] == "foo"){
-        
+      if(fields[i] == "country_code"){
+        output.push_back(country_code(results, in_size));
       }
     }
     
@@ -42,7 +161,10 @@ namespace ip2_wrapper {
       
     }
     
-    List output
+    // Loop to free
+    for(unsigned int i = 0; i < input_size; i++){
+      IP2Location_free_record(x[i]);
+    }
     // Close file
     IP2Location_close(loc_obj);
     

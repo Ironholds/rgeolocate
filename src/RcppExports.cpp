@@ -51,3 +51,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// ip2location_
+DataFrame ip2location_(CharacterVector ips, CharacterVector fields, std::string file);
+RcppExport SEXP rgeolocate_ip2location_(SEXP ipsSEXP, SEXP fieldsSEXP, SEXP fileSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< CharacterVector >::type ips(ipsSEXP);
+    Rcpp::traits::input_parameter< CharacterVector >::type fields(fieldsSEXP);
+    Rcpp::traits::input_parameter< std::string >::type file(fileSEXP);
+    rcpp_result_gen = Rcpp::wrap(ip2location_(ips, fields, file));
+    return rcpp_result_gen;
+END_RCPP
+}
