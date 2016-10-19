@@ -90,12 +90,18 @@ CharacterVector ip2_wrapper::isp(std::vector <IP2LocationRecord*>& results, unsi
 NumericVector ip2_wrapper::lat(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   NumericVector output(in_size);
+  double holding;
   
   for(unsigned int i = 0; i < in_size; i++){
     if(results[i] == NULL){
       output[i] = NA_REAL;
     } else {
-      output[i] = results[i]->latitude;
+      holding = results[i]->latitude;
+      if(holding == 0.0){
+        output[i] = NA_REAL;
+      } else {
+        output[i] = holding;
+      }
     }
   }
   
@@ -105,12 +111,18 @@ NumericVector ip2_wrapper::lat(std::vector <IP2LocationRecord*>& results, unsign
 NumericVector ip2_wrapper::lng(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   
   NumericVector output(in_size);
+  double holding;
   
   for(unsigned int i = 0; i < in_size; i++){
     if(results[i] == NULL){
       output[i] = NA_REAL;
     } else {
-      output[i] = results[i]->longitude;
+      holding = results[i]->longitude;
+      if(holding == 0.0){
+        output[i] = NA_REAL;
+      } else {
+        output[i] = holding;
+      }
     }
   }
   
@@ -279,12 +291,18 @@ CharacterVector ip2_wrapper::mobile_brand(std::vector <IP2LocationRecord*>& resu
 
 NumericVector ip2_wrapper::elevation(std::vector <IP2LocationRecord*>& results, unsigned int& in_size){
   NumericVector output(in_size);
+  double holding;
   
   for(unsigned int i = 0; i < in_size; i++){
     if(results[i] == NULL){
       output[i] = NA_REAL;
     } else {
-      output[i] = results[i]->elevation;
+      holding = results[i]->elevation;
+      if(holding == 0.0){
+        output[i] = NA_REAL;
+      } else {
+        output[i] = holding;
+      }
     }
   }
   

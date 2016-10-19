@@ -15,3 +15,5 @@ test_that("IPv4 and 6 geolocation works with large-field files", {
   results <- ip2location(ips = test_ips, fields = "country_name", file = file)
   expect_identical(results$country_name, c("United States", "Germany"))
 })
+
+test_that("Lat/long retrieval works")
