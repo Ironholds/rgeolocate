@@ -9,6 +9,6 @@ List maxmind_(CharacterVector ips, const char* file, std::vector < std::string >
 }
 
 //[[Rcpp::export]]
-List ip2location_(CharacterVector ips, CharacterVector fields, std::string file){
-  return ip2_wrapper::ip_location(ips, fields, file);
+List ip2location_(CharacterVector ips, CharacterVector fields, std::string file, bool use_memory){
+  return ip2_wrapper::ip_location(ips, fields, file, use_memory);
 }

@@ -360,13 +360,21 @@ List ip2_wrapper::process_results(CharacterVector fields,
 }
 
 List ip2_wrapper::ip_location(CharacterVector ip_addresses, CharacterVector fields,
-                              std::string file){
+                              std::string file, bool use_memory){
   
   // Open file
   IP2Location* loc_obj = IP2Location_open((char*)file.c_str());
   if (loc_obj == NULL){
     Rcpp::stop("Database could not be opened");
   }
+  
+  if(use_memory){
+    if(IP2Location_open_mem(loc_obj, IP2LOCATION_CACHE_MEMORY) < 0){
+      IP2Location_close(loc_obj);
+      Rcpp::stop("Database could not be stored in memory");
+    }
+  }
+
   
   // Get the results
   unsigned int input_size = ip_addresses.size();

@@ -17,7 +17,7 @@ maxmind_ <- function(ips, file, fields) {
     .Call('rgeolocate_maxmind_', PACKAGE = 'rgeolocate', ips, file, fields)
 }
 
-ip2location_ <- function(ips, fields, file) {
-    .Call('rgeolocate_ip2location_', PACKAGE = 'rgeolocate', ips, fields, file)
+ip2location_ <- function(ips, fields, file, use_memory) {
+    .Call('rgeolocate_ip2location_', PACKAGE = 'rgeolocate', ips, fields, file, use_memory)
 }
 

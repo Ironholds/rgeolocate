@@ -47,5 +47,5 @@ namespace ip2_wrapper {
   List process_results(CharacterVector fields, std::vector <IP2LocationRecord*>& results);
   
   List ip_location(CharacterVector ip_addresses, CharacterVector fields,
-                   std::string file);
+                   std::string file, bool use_memory);
 }

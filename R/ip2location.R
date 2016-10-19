@@ -1,4 +1,5 @@
-ip2location <- function(ips, file, fields = c("country_code", "country_name")){
+ip2location <- function(ips, file, use_memory = TRUE,
+                        fields = c("country_code", "country_name")){
   
   possible_fields <- c("country_code", "country_name", "region", "city", "isp", "lat", 
                        "long", "domain", "area_code", "timezone", "netspeed", "international_code", 
@@ -12,5 +13,5 @@ ip2location <- function(ips, file, fields = c("country_code", "country_name")){
   
   stopifnot(!is.na(file))
   
-  return(ip2location_(ips, fields, file))
+  return(ip2location_(ips, fields, file, use_memory))
 }
