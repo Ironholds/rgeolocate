@@ -7,7 +7,7 @@ test_that("non-existent files are detected", {
 })
 
 test_that("non-existent IPs are detected", {
-  results <- ip2location("foo", file, TRUE, "country_name")
+  results <- ip2location("foo", file, "country_name")
   expect_true(is.na(results[1,1]))
 })
 
@@ -17,7 +17,7 @@ test_that("IPv4 and 6 geolocation works with large-field files", {
 })
 
 test_that("Lat/long retrieval works", {
-  result <- ip2location(test_ips, file, TRUE, c("lat", "long"))
+  result <- ip2location(test_ips, file, c("lat", "long"))
   expect_true(is.na(result$lat[1]))
   expect_gt(result$lat[2], 50)
   expect_lt(result$lat[2], 51)
