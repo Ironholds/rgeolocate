@@ -11,7 +11,7 @@ query_ip_api <- function(ip, sleep){
   
   parsed_results <- content(result, as = "parsed", type = "application/json")
   if(parsed_results$status == "fail"){
-    return(paste("Error:", result$message))
+    return("Error")
   }
   return(unlist(parsed_results))
 }

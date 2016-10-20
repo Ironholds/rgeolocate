@@ -6,35 +6,13 @@
 using namespace Rcpp;
 
 // ip_to_df
-DataFrame ip_to_df(std::list < std::vector < std::string > > x);
+DataFrame ip_to_df(List x);
 RcppExport SEXP rgeolocate_ip_to_df(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::list < std::vector < std::string > > >::type x(xSEXP);
+    Rcpp::traits::input_parameter< List >::type x(xSEXP);
     rcpp_result_gen = Rcpp::wrap(ip_to_df(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// freegeoip_to_df
-DataFrame freegeoip_to_df(std::list < std::vector < std::string > > x);
-RcppExport SEXP rgeolocate_freegeoip_to_df(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::list < std::vector < std::string > > >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(freegeoip_to_df(x));
-    return rcpp_result_gen;
-END_RCPP
-}
-// telize_to_df
-DataFrame telize_to_df(std::list < std::vector < std::string > > x);
-RcppExport SEXP rgeolocate_telize_to_df(SEXP xSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::list < std::vector < std::string > > >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(telize_to_df(x));
     return rcpp_result_gen;
 END_RCPP
 }
