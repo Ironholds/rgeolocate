@@ -346,7 +346,7 @@ List ip2_wrapper::process_results(CharacterVector fields,
       output.push_back(lng(results, in_size));
     } else if(fields[i] == "domain"){
       output.push_back(domain(results, in_size));
-    } else if(fields[i] == "area_code"){
+    } else if(fields[i] == "zip_code"){
       output.push_back(zipcode(results, in_size));
     } else if(fields[i] == "timezone"){
       output.push_back(tz(results, in_size));
