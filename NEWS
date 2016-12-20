@@ -3,6 +3,7 @@ Version 0.8.0
 
 DEVELOPMENT
 * Using longer delay for requests to ip-api.com due to new API rate limits.
+* Allow retrieving isp and organization with an ISP database
 
 Version 0.7.0
 -------------------------------------------------------------------------
