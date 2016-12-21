@@ -53,5 +53,5 @@ maxmind <- function(ips, file, fields = c("continent_name", "country_name", "cou
     fields <- fields[fields %in% possible_fields]
   }
 
-  return(maxmind_(ips, file, fields))
+  return(maxmind_(ips, path.expand(file), fields))
 }

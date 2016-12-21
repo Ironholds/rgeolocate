@@ -23,6 +23,8 @@ maxmind(ips, file, fields = c("continent_name", "country_name",
  \item{timezone}{: the tzdata-compatible time zone. Requires a city database.}
  \item{longitude}{: latitude of location. Requires a city database.}
  \item{latitude}{: longitude of location. Requires a city database.}
+ \item{isp}{: name of ISP. Requires an ISP database.}
+ \item{organization}{: name of organization. Requires an ISP database.}
  \item{connection}{: the type of internet connection. Requires a connection type/netspeed database.}
 }}
 }

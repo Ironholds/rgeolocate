@@ -69,5 +69,5 @@ ip2location <- function(ips, file, fields = c("country_code", "country_name"),
   
   stopifnot(!is.na(file))
   
-  return(ip2location_(ips, fields, file, use_memory))
+  return(ip2location_(ips, fields, path.expand(file), use_memory))
 }
