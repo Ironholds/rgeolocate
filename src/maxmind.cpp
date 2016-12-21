@@ -139,6 +139,14 @@ CharacterVector maxmind_bindings::connection(MMDB_s *data, CharacterVector ip_ad
   return mmdb_getstring(data, ip_addresses, "connection_type", NULL);
 }
 
+CharacterVector maxmind_bindings::isp(MMDB_s *data, CharacterVector ip_addresses){
+  return mmdb_getstring(data, ip_addresses, "isp", NULL);
+}
+
+CharacterVector maxmind_bindings::organization(MMDB_s *data, CharacterVector ip_addresses){
+  return mmdb_getstring(data, ip_addresses, "organization", NULL);
+}
+
 std::vector < int > maxmind_bindings::city_geoname_id(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getint(data, ip_addresses, "city", "geoname_id", NULL);
 }
@@ -176,6 +184,10 @@ List maxmind_bindings::lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set,
       output.push_back(longitude(mmdb_set, ip_addresses));
     } else if(fields[i] == "connection"){
       output.push_back(connection(mmdb_set, ip_addresses));
+    } else if(fields[i] == "organization"){
+      output.push_back(organization(mmdb_set, ip_addresses));
+    } else if(fields[i] == "isp"){
+      output.push_back(isp(mmdb_set, ip_addresses));
     } else if (fields[i] == "city_geoname_id") {
       output.push_back(city_geoname_id(mmdb_set, ip_addresses));
     }

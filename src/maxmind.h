@@ -28,6 +28,10 @@ private:
   
   CharacterVector connection(MMDB_s *data, CharacterVector ip_addresses);
 
+  CharacterVector isp(MMDB_s *data, CharacterVector ip_addresses);
+  
+  CharacterVector organization(MMDB_s *data, CharacterVector ip_addresses);
+  
   std::vector < double > latitude(MMDB_s *data, CharacterVector ip_addresses);
 
   std::vector < double > longitude(MMDB_s *data, CharacterVector ip_addresses);
