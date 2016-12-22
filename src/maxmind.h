@@ -22,7 +22,7 @@ private:
   
   CharacterVector city_name(MMDB_s *data, CharacterVector ip_addresses);
 
-  std::vector < int > city_geoname_id(MMDB_s *data, CharacterVector ip_addresses);
+  IntegerVector city_geoname_id(MMDB_s *data, CharacterVector ip_addresses);
   
   CharacterVector timezone(MMDB_s *data, CharacterVector ip_addresses);
   
@@ -32,9 +32,9 @@ private:
   
   CharacterVector organization(MMDB_s *data, CharacterVector ip_addresses);
   
-  std::vector < double > latitude(MMDB_s *data, CharacterVector ip_addresses);
+  NumericVector latitude(MMDB_s *data, CharacterVector ip_addresses);
 
-  std::vector < double > longitude(MMDB_s *data, CharacterVector ip_addresses);
+  NumericVector longitude(MMDB_s *data, CharacterVector ip_addresses);
   
   List lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set, std::vector < std::string > fields);
   
