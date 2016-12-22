@@ -31,7 +31,7 @@ For the latest CRAN release:
 
 For the development version:
 
-    devtools::install_github("ironholds/rgeolocate", ref = "0.8.0")
+    devtools::install_github("ironholds/rgeolocate")
     
 ### Dependencies
 `rgeolocate` depends on [httr](https://cran.r-project.org/package=httr) for the bindings
