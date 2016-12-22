@@ -3,7 +3,7 @@
 __Author(s:__ Oliver Keyes, Drew Schmidt<br/>
 __License:__ Apache 2.0
 __Status:__ Stable
-__Current release:__ 0.8.0 ("It's A Map")
+__Current release:__ 1.0.0 ("Not From Around Here")
 
 [![Travis-CI Build Status](https://travis-ci.org/Ironholds/rgeolocate.svg?branch=master)](https://travis-ci.org/Ironholds/rgeolocate) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/rgeolocate)
 
