@@ -147,11 +147,11 @@ CharacterVector maxmind_bindings::organization(MMDB_s *data, CharacterVector ip_
   return mmdb_getstring(data, ip_addresses, "organization", NULL);
 }
 
-IntegerVector maxmind_bindings::autonomous_system_number(MMDB_s *data, CharacterVector ip_addresses){
+IntegerVector maxmind_bindings::asn(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getint(data, ip_addresses, "autonomous_system_number", NULL);
 }
 
-CharacterVector maxmind_bindings::autonomous_system_organization(MMDB_s *data, CharacterVector ip_addresses){
+CharacterVector maxmind_bindings::aso(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "autonomous_system_organization", NULL);
 }
 
@@ -196,10 +196,10 @@ List maxmind_bindings::lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set,
       output.push_back(organization(mmdb_set, ip_addresses));
     } else if(fields[i] == "isp"){
       output.push_back(isp(mmdb_set, ip_addresses));
-    } else if(fields[i] == "autonomous_system_number"){
-      output.push_back(autonomous_system_number(mmdb_set, ip_addresses));
-    } else if(fields[i] == "autonomous_system_organization"){
-      output.push_back(autonomous_system_organization(mmdb_set, ip_addresses));
+    } else if(fields[i] == "asn"){
+      output.push_back(asn(mmdb_set, ip_addresses));
+    } else if(fields[i] == "aso"){
+      output.push_back(aso(mmdb_set, ip_addresses));
     } else if (fields[i] == "city_geoname_id") {
       output.push_back(city_geoname_id(mmdb_set, ip_addresses));
     }
