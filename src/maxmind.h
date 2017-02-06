@@ -31,6 +31,10 @@ private:
   CharacterVector isp(MMDB_s *data, CharacterVector ip_addresses);
   
   CharacterVector organization(MMDB_s *data, CharacterVector ip_addresses);
+
+  IntegerVector asn(MMDB_s *data, CharacterVector ip_addresses);
+
+  CharacterVector aso(MMDB_s *data, CharacterVector ip_addresses);
   
   NumericVector latitude(MMDB_s *data, CharacterVector ip_addresses);
 

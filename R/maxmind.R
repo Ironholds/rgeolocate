@@ -20,6 +20,8 @@
 #'  \item{latitude}{: longitude of location. Requires a city database.}
 #'  \item{isp}{: name of ISP. Requires an ISP database.}
 #'  \item{organization}{: name of organization. Requires an ISP database.}
+#'  \item{asn}{: Autonomous System Number. Requires an ISP database.}
+#'  \item{aso}{: Autonomous System Organization. Requires an ISP database.}
 #'  \item{connection}{: the type of internet connection. Requires a connection type/netspeed database.}
 #'}
 #'@details
@@ -45,7 +47,7 @@
 maxmind <- function(ips, file, fields = c("continent_name", "country_name", "country_code")){
   possible_fields <- c("continent_name", "country_name", "country_code", "region_name",
                        "city_name", "timezone", "connection", "city_geoname_id", "latitude", "longitude",
-                       "isp", "organization")
+                       "isp", "organization", "asn", "aso")
   
   if(!all(fields %in% possible_fields)){
     warning("Some field names you have provided are not supported and no data will be retrieved for them. \nThe
