@@ -4,6 +4,7 @@
 \name{rgeolocate}
 \alias{rgeolocate}
 \alias{rgeolocate-package}
+\alias{rgeolocate-package}
 \title{IP Geolocation in R}
 \description{
 This package aims to provide connectors to myriad online and offline sources for
@@ -11,4 +12,3 @@ taking IP addresses and geolocating them to country, city, timezone and a whole 
 For individual connectors, see the package index. It depends on libmaxminddb, which can be obtained and
 installed from https://github.com/maxmind/libmaxminddb
 }
-

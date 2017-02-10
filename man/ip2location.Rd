@@ -64,4 +64,3 @@ ip2location(example_ip, file, c("country_code", "country_name", "region", "city"
 \code{\link{maxmind}}, which uses MaxMind proprietary databases to get similar
 information.
 }
-

@@ -33,4 +33,3 @@ IP addresses into \code{\link{db_ip}}
 db_ip(ip_addresses = "173.194.67.1", key = "ThisIsNotARealKey")
 }
 }
-
