@@ -1,8 +1,8 @@
 ## Generalised IP geolocation through R
 
 __Author(s:__ Oliver Keyes, Drew Schmidt<br/>
-__License:__ Apache 2.0
-__Status:__ Stable
+__License:__ Apache 2.0<br/>
+__Status:__ Stable<br/>
 __Current release:__ 1.0.0 ("Not From Around Here")
 
 [![Travis-CI Build Status](https://travis-ci.org/Ironholds/rgeolocate.svg?branch=master)](https://travis-ci.org/Ironholds/rgeolocate) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/rgeolocate)
@@ -36,4 +36,4 @@ For the development version:
 ### Dependencies
 `rgeolocate` depends on [httr](https://cran.r-project.org/package=httr) for the bindings
 to web databases; other than that, just base R! Thanks to the work of Drew Schmidt, `rgeolocate` includes the underlying
-MaxMind library and its dependencies.
+binary libraries and their dependencies.

@@ -1,4 +1,4 @@
-Version 1.0.0 [WIP]
+Version 1.0.0
 -------------------------------------------------------------------------
 * Allow retrieving isp, organization, autonomous system number, and autonomous system organization from MaxMind (with an ISP database).
 * Support for ip2location binaries is provided through the ip2location() function.
