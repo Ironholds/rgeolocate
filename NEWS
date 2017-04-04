@@ -1,3 +1,8 @@
+Version 1.0.1 [WIP]
+-------------------------------------------------------------------------
+* Functions registered with R's C API and namespacing system
+* ip2location() documentation clarified
+
 Version 1.0.0
 -------------------------------------------------------------------------
 * Allow retrieving isp, organization, autonomous system number, and autonomous system organization from MaxMind (with an ISP database).

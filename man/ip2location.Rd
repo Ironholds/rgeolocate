@@ -10,7 +10,9 @@ ip2location(ips, file, fields = c("country_code", "country_name"),
 \arguments{
 \item{ips}{A character vector of IP addresses.}
 
-\item{file}{The path to an IP2Location binary database.}
+\item{file}{The path to an IP2Location binary database. One is included
+in the package (see the examples below); full datasets can be purchased, and sample ones
+downloaded, at \href{http://lite.ip2location.com/}{the ip2location website}.}
 
 \item{fields}{Which pieces of metadata to retrieve for each IP address. Options are:
 \itemize{

@@ -7,7 +7,9 @@
 #'
 #'@param ips A character vector of IP addresses.
 #'
-#'@param file The path to an IP2Location binary database.
+#'@param file The path to an IP2Location binary database. One is included
+#'in the package (see the examples below); full datasets can be purchased, and sample ones
+#'downloaded, at \href{http://lite.ip2location.com/}{the ip2location website}.
 #'
 #'@param fields Which pieces of metadata to retrieve for each IP address. Options are:
 #'\itemize{
