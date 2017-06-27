@@ -3,6 +3,7 @@ Version 1.0.1 [WIP]
 * Functions registered with R's C API and namespacing system
 * ip2location() documentation clarified
 * R-side functions now automatically generate absolute paths to the database files.
+* Works on GCC 7.1
 
 Version 1.0.0
 -------------------------------------------------------------------------

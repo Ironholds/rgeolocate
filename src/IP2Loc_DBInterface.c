@@ -209,166 +209,144 @@ int32_t IP2Location_DB_Load_to_mem(FILE *filehandle, void *memory, int64_t size)
 }
 
 //Close the corresponding memory, based on the opened option.
-int32_t IP2Location_DB_close(FILE *filehandle)
-{
-    struct stat statbuf;
-    if ( filehandle != NULL )
-        fclose(filehandle);
-    if ( DB_access_type == IP2LOCATION_CACHE_MEMORY )
-    {
-        if( cache_shm_ptr != NULL )
-            free(cache_shm_ptr);
+int32_t IP2Location_DB_close(FILE *filehandle){
+  struct stat statbuf;
+  if(filehandle != NULL ){
+    fclose(filehandle);
+  }
+  
+  if(DB_access_type == IP2LOCATION_CACHE_MEMORY){
+    if( cache_shm_ptr != NULL ){
+      free(cache_shm_ptr);
     }
-    else if ( DB_access_type == IP2LOCATION_SHARED_MEMORY )
-    {
-        if( cache_shm_ptr != NULL )
-        {
+  } else if (DB_access_type == IP2LOCATION_SHARED_MEMORY) {
+    if( cache_shm_ptr != NULL ){
 #ifndef	_WIN32
-            if(fstat(fileno(filehandle), &statbuf) == 0)
-            {
-                munmap(cache_shm_ptr, statbuf.st_size);
-            }
-            close(shm_fd);
+      if(fstat(fileno(filehandle), &statbuf) == 0){
+        munmap(cache_shm_ptr, statbuf.st_size);
+      }
+      close(shm_fd);
 #else
 #ifdef _WIN32
-            UnmapViewOfFile(cache_shm_ptr);
-            CloseHandle(shm_fd);
+      UnmapViewOfFile(cache_shm_ptr);
+      CloseHandle(shm_fd);
 #endif
 #endif
-        }
     }
-    DB_access_type = IP2LOCATION_FILE_IO;
-    return 0;
+  }
+  DB_access_type = IP2LOCATION_FILE_IO;
+  return 0;
 }
 
 #ifndef	_WIN32
-void IP2Location_DB_del_shm()
-{
-    shm_unlink(IP2LOCATION_SHM);
+void IP2Location_DB_del_shm(){
+  shm_unlink(IP2LOCATION_SHM);
 }
 #else
 #ifdef _WIN32
-void IP2Location_DB_del_shm()
-{
+void IP2Location_DB_del_shm(){
 }
 #endif
 #endif
 
-struct in6_addr_local IP2Location_readIPv6Address(FILE *handle, uint32_t position)
-{
-    int i,j;
-    struct in6_addr_local addr6;
-    for( i = 0, j = 15; i < 16; i++, j-- )
-    {
-        addr6.u.addr8[i] = IP2Location_read8(handle, position + j);
-    }
-    return addr6;
+struct in6_addr_local IP2Location_readIPv6Address(FILE *handle, uint32_t position){
+  int i,j;
+  struct in6_addr_local addr6;
+  for( i = 0, j = 15; i < 16; i++, j-- ){
+    addr6.u.addr8[i] = IP2Location_read8(handle, position + j);
+  }
+  return addr6;
 }
 
-uint32_t IP2Location_read32(FILE *handle, uint32_t position)
-{
-    uint8_t byte1 = 0;
-    uint8_t byte2 = 0;
-    uint8_t byte3 = 0;
-    uint8_t byte4 = 0;
-    uint8_t *cache_shm = cache_shm_ptr;
-
-    //Read from file
-    if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL)
-    {
-        fseek(handle, position-1, 0);
-        fread(&byte1, 1, 1, handle);
-        fread(&byte2, 1, 1, handle);
-        fread(&byte3, 1, 1, handle);
-        fread(&byte4, 1, 1, handle);
-    }
-    else
-    {
-        byte1 = cache_shm[ position - 1 ];
-        byte2 = cache_shm[ position ];
-        byte3 = cache_shm[ position + 1 ];
-        byte4 = cache_shm[ position + 2 ];
-    }
-    return ((byte4 << 24) | (byte3 << 16) | (byte2 << 8) | (byte1));
+uint32_t IP2Location_read32(FILE *handle, uint32_t position){
+  
+  uint8_t byte1 = 0;
+  uint8_t byte2 = 0;
+  uint8_t byte3 = 0;
+  uint8_t byte4 = 0;
+  uint8_t *cache_shm = cache_shm_ptr;
+  size_t temp;
+  
+  //Read from file
+  if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
+    fseek(handle, position-1, 0);
+    temp = fread(&byte1, 1, 1, handle);
+    temp = fread(&byte2, 1, 1, handle);
+    temp = fread(&byte3, 1, 1, handle);
+    temp = fread(&byte4, 1, 1, handle);
+  } else {
+    byte1 = cache_shm[ position - 1 ];
+    byte2 = cache_shm[ position ];
+    byte3 = cache_shm[ position + 1 ];
+    byte4 = cache_shm[ position + 2 ];
+  }
+  return ((byte4 << 24) | (byte3 << 16) | (byte2 << 8) | (byte1));
 }
 
-uint8_t IP2Location_read8(FILE *handle, uint32_t position)
-{
-    uint8_t ret = 0;
-    uint8_t *cache_shm = cache_shm_ptr;
-
-    if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL)
-    {
-        fseek(handle, position-1, 0);
-        fread(&ret, 1, 1, handle);
-    }
-    else
-    {
-        ret = cache_shm[ position - 1 ];
-    }
-    return ret;
+uint8_t IP2Location_read8(FILE *handle, uint32_t position){
+  
+  uint8_t ret = 0;
+  uint8_t *cache_shm = cache_shm_ptr;
+  size_t temp;
+  if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
+    fseek(handle, position-1, 0);
+    temp = fread(&ret, 1, 1, handle);
+  } else {
+    ret = cache_shm[ position - 1 ];
+  }
+  
+  return ret;
 }
 
-char *IP2Location_readStr(FILE *handle, uint32_t position)
-{
-    uint8_t size = 0;
-    char *str = 0;
-    uint8_t *cache_shm = cache_shm_ptr;
-
-    if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL)
-    {
-        fseek(handle, position, 0);
-        fread(&size, 1, 1, handle);
-        str = (char *)malloc(size+1);
-        memset(str, 0, size+1);
-        fread(str, size, 1, handle);
-    }
-    else
-    {
-        size = cache_shm[ position ];
-        str = (char *)malloc(size+1);
-        memset(str, 0, size+1);
-        memcpy((void*) str, (void*)&cache_shm[ position + 1 ], size);
-    }
-    return str;
+char *IP2Location_readStr(FILE *handle, uint32_t position){
+  uint8_t size = 0;
+  char *str = 0;
+  uint8_t *cache_shm = cache_shm_ptr;
+  size_t temp;
+  
+  if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
+    fseek(handle, position, 0);
+    temp = fread(&size, 1, 1, handle);
+    str = (char *)malloc(size+1);
+    memset(str, 0, size+1);
+    temp = fread(str, size, 1, handle);
+  } else {
+    size = cache_shm[ position ];
+    str = (char *)malloc(size+1);
+    memset(str, 0, size+1);
+    memcpy((void*) str, (void*)&cache_shm[ position + 1 ], size);
+  }
+  return str;
 }
 
-float IP2Location_readFloat(FILE *handle, uint32_t position)
-{
-    float ret = 0.0;
-    uint8_t *cache_shm = cache_shm_ptr;
-
+float IP2Location_readFloat(FILE *handle, uint32_t position){
+  float ret = 0.0;
+  uint8_t *cache_shm = cache_shm_ptr;
+  size_t temp;
+  
 #if defined(_SUN_) || defined(__powerpc__) || defined(__ppc__) || defined(__ppc64__) || defined(__powerpc64__)
-    char * p = (char *) &ret;
+  char * p = (char *) &ret;
 
-    // for SUN SPARC, have to reverse the byte order
-    if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL)
-    {
-        fseek(handle, position-1, 0);
-        fread(p+3, 1, 1, handle);
-        fread(p+2, 1, 1, handle);
-        fread(p+1, 1, 1, handle);
-        fread(p,   1, 1, handle);
-    }
-    else
-    {
-        *(p+3) = cache_shm[ position - 1 ];
-        *(p+2) = cache_shm[ position ];
-        *(p+1) = cache_shm[ position + 1 ];
-        *(p)   = cache_shm[ position + 2 ];
-    }
+  // for SUN SPARC, have to reverse the byte order
+  if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
+    fseek(handle, position-1, 0);
+    temp = fread(p+3, 1, 1, handle);
+    temp = fread(p+2, 1, 1, handle);
+    temp = fread(p+1, 1, 1, handle);
+    temp = fread(p,   1, 1, handle);
+  } else {
+    *(p+3) = cache_shm[ position - 1 ];
+    *(p+2) = cache_shm[ position ];
+    *(p+1) = cache_shm[ position + 1 ];
+    *(p)   = cache_shm[ position + 2 ];
+  }
 #else
-    if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL)
-    {
-        fseek(handle, position-1, 0);
-        fread(&ret, 4, 1, handle);
-    }
-    else
-    {
-        memcpy((void*) &ret, (void*)&cache_shm[ position - 1 ], 4);
-    }
+  if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
+    fseek(handle, position-1, 0);
+    temp = fread(&ret, 4, 1, handle);
+  } else {
+    memcpy((void*) &ret, (void*)&cache_shm[ position - 1 ], 4);
+  }
 #endif
-    return ret;
+  return ret;
 }
-
-
