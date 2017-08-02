@@ -5,7 +5,7 @@ __License:__ Apache 2.0<br/>
 __Status:__ Stable<br/>
 __Current release:__ 1.0.0 ("Not From Around Here")
 
-[![Travis-CI Build Status](https://travis-ci.org/Ironholds/rgeolocate.svg?branch=master)](https://travis-ci.org/Ironholds/rgeolocate) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/rgeolocate)
+[![Travis-CI Build Status](https://travis-ci.org/Ironholds/rgeolocate.svg?branch=master)](https://travis-ci.org/Ironholds/rgeolocate) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ores)](https://cran.r-project.org/package=ores) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/rgeolocate)
 
 IP geolocation is a powerful tool to have if you're dealing with web data, and there are a couple of R packages that
 provide access to specific services, such as the legacy rgeoip package
