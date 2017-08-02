@@ -2,14 +2,14 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 ip_to_df <- function(x) {
-    .Call('rgeolocate_ip_to_df', PACKAGE = 'rgeolocate', x)
+    .Call('_rgeolocate_ip_to_df', PACKAGE = 'rgeolocate', x)
 }
 
 maxmind_ <- function(ips, file, fields) {
-    .Call('rgeolocate_maxmind_', PACKAGE = 'rgeolocate', ips, file, fields)
+    .Call('_rgeolocate_maxmind_', PACKAGE = 'rgeolocate', ips, file, fields)
 }
 
 ip2location_ <- function(ips, fields, file, use_memory) {
-    .Call('rgeolocate_ip2location_', PACKAGE = 'rgeolocate', ips, fields, file, use_memory)
+    .Call('_rgeolocate_ip2location_', PACKAGE = 'rgeolocate', ips, fields, file, use_memory)
 }
 

@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // ip_to_df
 DataFrame ip_to_df(List x);
-RcppExport SEXP rgeolocate_ip_to_df(SEXP xSEXP) {
+RcppExport SEXP _rgeolocate_ip_to_df(SEXP xSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -18,7 +18,7 @@ END_RCPP
 }
 // maxmind_
 List maxmind_(CharacterVector ips, const char* file, std::vector < std::string > fields);
-RcppExport SEXP rgeolocate_maxmind_(SEXP ipsSEXP, SEXP fileSEXP, SEXP fieldsSEXP) {
+RcppExport SEXP _rgeolocate_maxmind_(SEXP ipsSEXP, SEXP fileSEXP, SEXP fieldsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -31,7 +31,7 @@ END_RCPP
 }
 // ip2location_
 List ip2location_(CharacterVector ips, CharacterVector fields, std::string file, bool use_memory);
-RcppExport SEXP rgeolocate_ip2location_(SEXP ipsSEXP, SEXP fieldsSEXP, SEXP fileSEXP, SEXP use_memorySEXP) {
+RcppExport SEXP _rgeolocate_ip2location_(SEXP ipsSEXP, SEXP fieldsSEXP, SEXP fileSEXP, SEXP use_memorySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -42,4 +42,16 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(ip2location_(ips, fields, file, use_memory));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_rgeolocate_ip_to_df", (DL_FUNC) &_rgeolocate_ip_to_df, 1},
+    {"_rgeolocate_maxmind_", (DL_FUNC) &_rgeolocate_maxmind_, 3},
+    {"_rgeolocate_ip2location_", (DL_FUNC) &_rgeolocate_ip2location_, 4},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_rgeolocate(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }
