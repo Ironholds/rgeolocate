@@ -3,7 +3,7 @@
 __Author(s:__ Oliver Keyes, Drew Schmidt<br/>
 __License:__ Apache 2.0<br/>
 __Status:__ Stable<br/>
-__Current release:__ 1.0.0 ("Not From Around Here")
+__Current release:__ 1.0.1
 
 [![Travis-CI Build Status](https://travis-ci.org/Ironholds/rgeolocate.svg?branch=master)](https://travis-ci.org/Ironholds/rgeolocate) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rgeolocate)](https://cran.r-project.org/package=rgeolocate) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/rgeolocate)
 
