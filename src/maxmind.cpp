@@ -135,6 +135,10 @@ CharacterVector maxmind_bindings::timezone(MMDB_s *data, CharacterVector ip_addr
   return mmdb_getstring(data, ip_addresses, "location", "time_zone", NULL);
 }
 
+CharacterVector maxmind_bindings::postcode(MMDB_s *data, CharacterVector ip_addresses){
+  return mmdb_getstring(data, ip_addresses, "postal", "code", NULL);
+}
+
 CharacterVector maxmind_bindings::connection(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "connection_type", NULL);
 }
@@ -200,6 +204,8 @@ List maxmind_bindings::lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set,
       output.push_back(asn(mmdb_set, ip_addresses));
     } else if(fields[i] == "aso"){
       output.push_back(aso(mmdb_set, ip_addresses));
+    } else if(fields[i] == "postcode"){
+      output.push_back(postcode(mmdb_set, ip_addresses));
     } else if (fields[i] == "city_geoname_id") {
       output.push_back(city_geoname_id(mmdb_set, ip_addresses));
     }

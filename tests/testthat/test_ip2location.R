@@ -3,7 +3,9 @@ file <- system.file("extdata","ip2_sample.bin", package = "rgeolocate")
 test_ips <- c("66.249.69.245","2A04:0000:0000:0000:0000:0000:0000:0000")
 
 test_that("non-existent files are detected", {
-  expect_that(ip2location("foo", "bar"), throws_error("could not be opened"))
+  suppressWarnings({
+    expect_that(ip2location("foo", "bar"), throws_error("could not be opened"))
+  })
 })
 
 test_that("non-existent IPs are detected", {

@@ -1,3 +1,8 @@
+Version 1.1.0 [WIP]
+-------------------------------------------------------------------------
+* Allow for the retrieval of postcodes from city files (#44)
+* Maxmind calls should be slightly faster due to some pre-cacheing
+
 Version 1.0.1
 -------------------------------------------------------------------------
 * Functions registered with R's C API and namespacing system

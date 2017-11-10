@@ -7,13 +7,14 @@
 #'
 #'@param file the full path to the .mmdb file you want to query. 
 #'
-#'@param fields the fields you want to retrieve - options are:
+#'@param fields the fields you want to retrieve - a vector of any combination of:
 #'\itemize{
 #'  \item{continent_name}{: the English-language name of the continent. Requires a country or city database.}
 #'  \item{country_name}{: the English-language name of the country. Requires a country or city database.}
 #'  \item{country_code}{: the ISO code of the country. Requires a country or city database.}
 #'  \item{region_name}{: the English-language name of the region. Requires a city database.}
 #'  \item{city_name}{: the English-language name of the city. Requires a city database.}
+#'  \item{postcode}{: The approximate post/ZIP code. Requires a city database. }
 #'  \item{city_geoname_id}{: a unique ID representing a city. Requires a city database. }
 #'  \item{timezone}{: the tzdata-compatible time zone. Requires a city database.}
 #'  \item{longitude}{: latitude of location. Requires a city database.}
@@ -44,15 +45,17 @@
 #'file <- system.file("extdata","GeoLite2-Country.mmdb", package = "rgeolocate")
 #'results <- maxmind("196.200.60.51", file, "country_code")
 #'@export
-maxmind <- function(ips, file, fields = c("continent_name", "country_name", "country_code")){
+maxmind <- function(ips, file, fields = c("continent_name", "country_name",
+                                          "country_code")){
   possible_fields <- c("continent_name", "country_name", "country_code", "region_name",
                        "city_name", "timezone", "connection", "city_geoname_id", "latitude", "longitude",
-                       "isp", "organization", "asn", "aso")
+                       "isp", "organization", "asn", "aso", "postcode")
   
-  if(!all(fields %in% possible_fields)){
+  valid_fields <- (fields %in% rgeo_env$maxmind_tags)
+  if(!all(valid_fields)){
     warning("Some field names you have provided are not supported and no data will be retrieved for them. \nThe
-            unsupported fields are: ", paste(fields[!fields %in% possible_fields], collapse = ", "))
-    fields <- fields[fields %in% possible_fields]
+            unsupported fields are: ", paste(fields[!valid_fields], collapse = ", "))
+    fields <- fields[valid_fields]
   }
 
   return(maxmind_(ips, normalizePath(path.expand(file)), fields))

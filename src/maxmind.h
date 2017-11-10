@@ -23,6 +23,8 @@ private:
   CharacterVector city_name(MMDB_s *data, CharacterVector ip_addresses);
 
   IntegerVector city_geoname_id(MMDB_s *data, CharacterVector ip_addresses);
+
+  CharacterVector postcode(MMDB_s *data, CharacterVector ip_addresses);
   
   CharacterVector timezone(MMDB_s *data, CharacterVector ip_addresses);
   

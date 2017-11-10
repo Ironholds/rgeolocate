@@ -1,6 +1,8 @@
 context("Test MaxMind.")
 test_that("non-existent files are detected", {
-  expect_that(maxmind("foo","[@8"), throws_error("could not be opened"))
+  suppressWarnings({
+    expect_that(maxmind("foo","[@8"), throws_error("could not be opened"))
+  })
 })
 
 test_that("non-existent IPs are detected", {
@@ -49,6 +51,12 @@ test_that("Longitude, latitude, and geoname_id can be retrieved", {
     expect_that(results$longitude[1], equals(-1.25))
     expect_that(results$city_geoname_id[1], equals(2655045))
   }
+})
+
+test_that("Postcodes can be retrieved", {
+    infile <- system.file("extdata", "GeoIP2-City-Test.mmdb", package = "rgeolocate")
+    results <- maxmind("2.125.160.216", infile, "postcode")
+    expect_that(results$postcode[1], equals("OX1"))
 })
 
 
