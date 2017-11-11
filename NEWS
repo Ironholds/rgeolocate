@@ -2,6 +2,7 @@ Version 1.1.0 [WIP]
 -------------------------------------------------------------------------
 * Allow for the retrieval of postcodes from city files (#44)
 * Maxmind calls should be slightly faster due to some pre-cacheing
+* Internal Maxmind dataset updated
 
 Version 1.0.1
 -------------------------------------------------------------------------
