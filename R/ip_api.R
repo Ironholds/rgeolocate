@@ -4,12 +4,12 @@ query_ip_api <- function(ip, sleep){
   }
   url <- paste0("http://ip-api.com/json/", ip)
   
-  result <- GET(url, user_agent("rgeolocate - https://github.com/Ironholds/rgeolocate"))
+  result <- httr::GET(url, user_agent("rgeolocate - https://github.com/Ironholds/rgeolocate"))
   if(result$status > 300){
     return("Error")
   }
   
-  parsed_results <- content(result, as = "parsed", type = "application/json")
+  parsed_results <- httr::content(result, as = "parsed", type = "application/json")
   if(parsed_results$status == "fail"){
     return("Error")
   }
@@ -34,6 +34,9 @@ query_ip_api <- function(ip, sleep){
 #'@return either a data.frame or a list of vectors. If an IP cannot be geolocated, it
 #'will provide an error message: see the examples for field names and examples of each
 #'possible output.
+#'
+#'@seealso \code{\link{ip_info}} and \code{\link{db_ip}} for other
+#'online geolocation APIs.
 #'
 #'@examples
 #'\dontrun{

@@ -33,3 +33,7 @@ IP addresses into \code{\link{db_ip}}
 db_ip(ip_addresses = "173.194.67.1", key = "ThisIsNotARealKey")
 }
 }
+\seealso{
+\code{\link{ip_api}} and \code{\link{ip_info}} for other
+online geolocation APIs.
+}

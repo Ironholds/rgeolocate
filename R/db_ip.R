@@ -1,10 +1,10 @@
 query_db_ip <- function(ip, key){
   url <- paste0("http://api.db-ip.com/addrinfo?addr=", ip, "&api_key=", key)
-  result <- GET(url, user_agent("rgeolocate - https://github.com/Ironholds/rgeolocate"))
+  result <- httr::GET(url, user_agent("rgeolocate - https://github.com/Ironholds/rgeolocate"))
   if(result$status > 300){
     return("Error")
   }
-  return(unlist(content(result, as = "parsed", type = "application/json")))
+  return(unlist(httr::content(result, as = "parsed", type = "application/json")))
 }
 
 #'@title Geolocate IP Addresses Through db-ip.com
@@ -25,6 +25,9 @@ query_db_ip <- function(ip, key){
 #'@return a list of lists, each containing the geolocated values for one IP address.
 #'The variables found depend on the level of access your API key has; see the
 #'\href{http://db-ip.com/api/#key}{API documentation} for more information.
+#'
+#'@seealso \code{\link{ip_api}} and \code{\link{ip_info}} for other
+#'online geolocation APIs.
 #'
 #'@examples
 #'\dontrun{

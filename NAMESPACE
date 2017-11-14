@@ -3,6 +3,7 @@
 export(db_ip)
 export(ip2location)
 export(ip_api)
+export(ip_info)
 export(maxmind)
 importFrom(Rcpp,sourceCpp)
 importFrom(httr,GET)

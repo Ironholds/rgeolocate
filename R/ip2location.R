@@ -59,14 +59,11 @@
 ip2location <- function(ips, file, fields = c("country_code", "country_name"),
                         use_memory = TRUE){
   
-  possible_fields <- c("country_code", "country_name", "region", "city", "isp", "lat", 
-                       "long", "domain", "zip_code", "timezone", "netspeed", "international_code", 
-                       "area_code", "station_code", "station_name", "mcc", "mnc", "mobile_brand", 
-                       "elevation", "usage_type")
+  in_fields <- (fields %in% rgeo_env$ip2loc_tags)
   
-  if(any(!fields %in% possible_fields)){
+  if(any(!in_fields)){
     warning("Some entries in 'fields' are not valid and will be removed")
-    fields <- fields[fields %in% possible_fields]
+    fields <- fields[in_fields]
   }
   
   stopifnot(!is.na(file))

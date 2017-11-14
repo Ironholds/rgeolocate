@@ -42,3 +42,7 @@ result <- ip_api("2607:FB90:426:DC1D:CFC4:4875:8BC2:4D93", as_data_frame = FALSE
 result <- ip_api("argh", as_data_frame = FALSE)
 }
 }
+\seealso{
+\code{\link{ip_info}} and \code{\link{db_ip}} for other
+online geolocation APIs.
+}
