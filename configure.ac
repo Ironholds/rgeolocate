@@ -47,5 +47,7 @@ AC_CHECK_FUNC(
 
 AC_SEARCH_LIBS([getaddrinfo], [socket])
 
+AC_CHECK_LIB(rt, shm_open)
+
 AC_SUBST(MAXMINDDB_CFLAGS)
 AC_OUTPUT(src/Makevars)
