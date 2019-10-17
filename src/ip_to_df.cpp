@@ -27,19 +27,19 @@ DataFrame ip_to_df(std::list < std::vector < std::string > > x){
   for(it = x.begin(); it != x.end(); it++){
     holding = *it;
     if(holding.size() == 14){
-      as_code[i] = holding[0];
-      city_name[i] = holding[1];
-      country_name[i] = holding[2];
-      country_code[i] = holding[3];
-      isp[i] = holding[4];
-      latitude[i] = holding[5];
-      longitude[i] = holding[6];
-      organisation[i] = holding[7];
-      region_code[i] = holding[9];
-      region_name[i] = holding[10];
-      status[i] = holding[11];
-      timezone[i] = holding[12];
-      zip_code[i] = holding[13];
+      as_code[i] = holding[12];
+      city_name[i] = holding[5];
+      country_name[i] = holding[1];
+      country_code[i] = holding[2];
+      isp[i] = holding[10];
+      latitude[i] = holding[7];
+      longitude[i] = holding[8];
+      organisation[i] = holding[11];
+      region_code[i] = holding[3];
+      region_name[i] = holding[4];
+      status[i] = holding[0];
+      timezone[i] = holding[9];
+      zip_code[i] = holding[6];
     } else {
       status[i] = holding[0];
     }
