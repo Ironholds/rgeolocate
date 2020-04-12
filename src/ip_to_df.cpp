@@ -33,21 +33,21 @@ DataFrame ip_to_df(List x){
   for(List::iterator it = x.begin(); it != x.end(); ++it ){
     holding = *it;
     if(holding.size() == 14){
-      as_code[i] =   check_str(holding[0]);
-      city_name[i] = check_str(holding[1]);
-      country_name[i] = check_str(holding[2]);
-      country_code[i] = check_str(holding[3]);
-      isp[i] = check_str(holding[4]);
-      latitude[i] = check_str(holding[5]);
-      longitude[i] = check_str(holding[6]);
-      organisation[i] = check_str(holding[7]);
-      region_code[i] = check_str(holding[9]);
-      region_name[i] = check_str(holding[10]);
-      status[i] = check_str(holding[11]);
-      timezone[i] = check_str(holding[12]);
-      zip_code[i] = check_str(holding[13]);
-    } else {
+      as_code[i] = check_str(holding[12]);
+      city_name[i] = check_str(holding[5]);
+      country_name[i] = check_str(holding[1]);
+      country_code[i] = check_str(holding[2]);
+      isp[i] = check_str(holding[10]);
+      latitude[i] = check_str(holding[7]);
+      longitude[i] = check_str(holding[8]);
+      organisation[i] = check_str(holding[11]);
+      region_code[i] = check_str(holding[3]);
+      region_name[i] = check_str(holding[4]);
       status[i] = check_str(holding[0]);
+      timezone[i] = check_str(holding[9]);
+      zip_code[i] = check_str(holding[6]);
+    } else {
+      status[i] = check_str(check_str(holding[0]));
     }
     i++;
   }

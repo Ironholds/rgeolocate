@@ -4,8 +4,12 @@
 \alias{ip2location}
 \title{Geolocate IP Addresses through IP2Location Databases}
 \usage{
-ip2location(ips, file, fields = c("country_code", "country_name"),
-  use_memory = TRUE)
+ip2location(
+  ips,
+  file,
+  fields = c("country_code", "country_name"),
+  use_memory = TRUE
+)
 }
 \arguments{
 \item{ips}{A character vector of IP addresses.}

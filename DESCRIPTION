@@ -1,11 +1,11 @@
 Package: rgeolocate
 Type: Package
 Title: IP Address Geolocation
-Version: 1.1.90000
-Date: 2017-11-10
-Author: Oliver Keyes [aut, cre], Drew Schmidt [aut], David Robinson [ctb],
+Version: 1.2.0
+Date: 2020-04-12
+Author: Os Keyes [aut, cre], Drew Schmidt [aut], David Robinson [ctb],
     Chris Davis [ctb], Bob Rudis [ctb], Maxmind, Inc. [cph], Pascal Gloor [cph], IP2Location.com [cph]
-Maintainer: Oliver Keyes <ironholds@gmail.com>
+Maintainer: Os Keyes <ironholds@gmail.com>
 Copyright: MaxMind, Inc. for the underlying libmaxmminddb library, IP2Location.com
     for libip2location, and the package authors for all other content.
 Description: Connectors to online and offline sources for taking IP addresses
@@ -21,4 +21,5 @@ Suggests:
     testthat,
     knitr
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.0
+Encoding: UTF-8

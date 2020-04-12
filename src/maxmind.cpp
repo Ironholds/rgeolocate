@@ -221,10 +221,10 @@ List maxmind_bindings::call_maxmind(CharacterVector ip_addresses, const char* fi
   MMDB_s geo_file;
   int result;
   result = MMDB_open(file, 0, &geo_file);
-  if(result != MMDB_SUCCESS){
-    throw std::range_error("The geolocation database could not be opened");
+  if(MMDB_SUCCESS != result){
+    Rcpp::stop("The geolocation database could not be opened");
   }
-  
+
   //Create references and holding
   int input_size = ip_addresses.size();
   IntegerVector rownames(input_size);

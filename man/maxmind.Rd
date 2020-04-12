@@ -4,8 +4,11 @@
 \alias{maxmind}
 \title{Geolocate IP Addresses through MaxMind Databases}
 \usage{
-maxmind(ips, file, fields = c("continent_name", "country_name",
-  "country_code"))
+maxmind(
+  ips,
+  file,
+  fields = c("continent_name", "country_name", "country_code")
+)
 }
 \arguments{
 \item{ips}{a character vector of IP addresses (IPv4 and IPv6 both work)}

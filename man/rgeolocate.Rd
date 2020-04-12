@@ -4,7 +4,6 @@
 \name{rgeolocate}
 \alias{rgeolocate}
 \alias{rgeolocate-package}
-\alias{rgeolocate-package}
 \title{IP Geolocation in R}
 \description{
 This package aims to provide connectors to myriad online and offline sources for

@@ -260,10 +260,10 @@ struct in6_addr_local IP2Location_readIPv6Address(FILE *handle, uint32_t positio
 
 uint32_t IP2Location_read32(FILE *handle, uint32_t position){
   
-  uint8_t byte1 = 0;
-  uint8_t byte2 = 0;
-  uint8_t byte3 = 0;
-  uint8_t byte4 = 0;
+  uint32_t byte1 = 0;
+  uint32_t byte2 = 0;
+  uint32_t byte3 = 0;
+  uint32_t byte4 = 0;
   uint8_t *cache_shm = cache_shm_ptr;
   size_t temp;
   

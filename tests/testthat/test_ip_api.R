@@ -24,7 +24,7 @@ test_that("Lists can be returned from ip-api", {
 
 test_that("data.frames with errors can be returned from ip-api", {
   result <- try({
-    ip_api("Go ahead and try to hit me if you're able, can't you see that my relationship is stable")},
+    ip_api("Goahead")},
     silent = TRUE)
   if(!"try-error" %in% class(result)){
     expect_that(is.data.frame(result), equals(TRUE))

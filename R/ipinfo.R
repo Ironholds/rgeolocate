@@ -20,6 +20,22 @@ ipinfo_single <- function(url){
   
   results <- httr::content(data)
   
+  if("error" %in% names(results)){
+    if(data$status_code == 404){
+      return(data.frame(
+        hostname = NA,
+        city = NA,
+        region = NA,
+        country = NA,
+        loc = NA,
+        org = NA,
+        postal = NA,
+        phone = NA,
+        stringsAsFactors = FALSE
+      ))
+    }
+  }
+  
   missing_vals <- setdiff(rgeo_env$ipinfo_tags, names(results))
   if(length(missing_vals)){
     for(val in missing_vals){
@@ -27,6 +43,8 @@ ipinfo_single <- function(url){
     }
   }
   results$ip <- NULL
+  results$readme <- NULL
+  
   return(data.frame(results, stringsAsFactors = FALSE)[,])
 }
 
@@ -63,7 +81,7 @@ ipinfo_single <- function(url){
 #'@export
 ip_info <- function(ip_addresses, token = NULL){
   
-  urls <- paste0("ipinfo.io/", ip_addresses,
+  urls <- paste0("http://ipinfo.io/", ip_addresses,
                  ifelse(is.null(token), "",
                         paste0("?token=", token)))
   

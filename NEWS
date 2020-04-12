@@ -1,9 +1,10 @@
-Version 1.1.0 [WIP]
+Version 1.1.0
 -------------------------------------------------------------------------
 * Allow for the retrieval of postcodes from city files (#44)
 * Maxmind calls should be slightly faster due to some pre-cacheing
 * Internal Maxmind dataset updated (#47)
 * Support for ipinfo.io (ip_info()) has been integrated. (#46)
+* General cleanup and bugfixes
 
 Version 1.0.1
 -------------------------------------------------------------------------

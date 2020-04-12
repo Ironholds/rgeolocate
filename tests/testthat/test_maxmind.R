@@ -1,7 +1,7 @@
 context("Test MaxMind.")
 test_that("non-existent files are detected", {
   suppressWarnings({
-    expect_that(maxmind("foo","[@8"), throws_error("could not be opened"))
+    expect_that(maxmind("foo","bar"), throws_error("could not be opened"))
   })
 })
 
