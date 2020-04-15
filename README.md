@@ -1,6 +1,6 @@
 ## Generalised IP geolocation through R
 
-__Author(s:__ Oliver Keyes, Drew Schmidt<br/>
+__Author(s:__ Os Keyes, Drew Schmidt<br/>
 __License:__ Apache 2.0<br/>
 __Status:__ Stable<br/>
 __Current release:__ 1.0.1
