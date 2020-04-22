@@ -14,7 +14,8 @@ db_ip(ip_addresses, key)
 \value{
 a list of lists, each containing the geolocated values for one IP address.
 The variables found depend on the level of access your API key has; see the
-\href{http://db-ip.com/api/#key}{API documentation} for more information.
+DB-IP API documentation on \href{http://db-ip.com}{their website}
+for more information.
 }
 \description{
 \code{ip_api} consumes a vector of IP addresses

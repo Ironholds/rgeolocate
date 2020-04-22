@@ -21,7 +21,7 @@ for more)
 
 If you have other bindings you'd like to see, [open a request](https://github.com/Ironholds/rgeolocate/issues)!
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/Ironholds/rgeolocate/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ### Installation
 

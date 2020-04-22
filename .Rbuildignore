@@ -5,3 +5,4 @@
 reconf
 LICENSE
 ^\.travis\.yml$
+^.*\.cache

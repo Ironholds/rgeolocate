@@ -24,7 +24,8 @@ query_db_ip <- function(ip, key){
 #'
 #'@return a list of lists, each containing the geolocated values for one IP address.
 #'The variables found depend on the level of access your API key has; see the
-#'\href{http://db-ip.com/api/#key}{API documentation} for more information.
+#'DB-IP API documentation on \href{http://db-ip.com}{their website}
+#'for more information.
 #'
 #'@seealso \code{\link{ip_api}} and \code{\link{ip_info}} for other
 #'online geolocation APIs.

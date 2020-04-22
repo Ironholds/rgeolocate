@@ -4,13 +4,14 @@ ipinfo_single <- function(url){
   
   if(data$status_code == 404){
     return(data.frame(
-      hostname = NA,
       city = NA,
       region = NA,
       country = NA,
       loc = NA,
       org = NA,
       postal = NA,
+      timezone = NA,
+      hostname = NA,
       phone = NA,
       stringsAsFactors = FALSE
     ))
@@ -23,13 +24,14 @@ ipinfo_single <- function(url){
   if("error" %in% names(results)){
     if(data$status_code == 404){
       return(data.frame(
-        hostname = NA,
         city = NA,
         region = NA,
         country = NA,
         loc = NA,
         org = NA,
         postal = NA,
+        timezone = NA,
+        hostname = NA,
         phone = NA,
         stringsAsFactors = FALSE
       ))
