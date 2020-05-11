@@ -75,7 +75,43 @@ static NumericVector mmdb_getdouble(MMDB_s *data, const CharacterVector ip_addre
   return output;
 }
 
-static IntegerVector mmdb_getint(MMDB_s *data, const CharacterVector ip_addresses, ...){
+static IntegerVector mmdb_getint32(MMDB_s *data, const CharacterVector ip_addresses, ...){
+  int input_size = ip_addresses.size();
+  IntegerVector output(input_size);
+  
+  int run_status;
+  int lookup_error;
+  int gai_error;
+  MMDB_lookup_result_s result;
+  MMDB_entry_data_s entry_data;
+  va_list path;
+  
+  
+  for(int i = 0; i < input_size; i++){
+    if((i % 10000) == 0){
+      Rcpp::checkUserInterrupt();
+    }
+    
+    result = MMDB_lookup_string(data, ip_addresses[i].operator char *(), &lookup_error, &gai_error);
+    if((lookup_error != MMDB_SUCCESS) | (gai_error != MMDB_SUCCESS)){
+      output[i] = NA_INTEGER;
+    } else {
+      va_start(path, ip_addresses);
+      run_status = MMDB_vget_value(&result.entry, &entry_data, path);
+      va_end(path);
+      if((run_status != MMDB_SUCCESS) | (!entry_data.has_data)){
+        output[i] = NA_INTEGER;
+      } else {
+        output[i] = entry_data.intunion.uint32;
+      }
+    }
+  }
+  
+  return output;
+}
+
+
+static IntegerVector mmdb_getint16(MMDB_s *data, const CharacterVector ip_addresses, ...){
   int input_size = ip_addresses.size();
   IntegerVector output(input_size);
   
@@ -109,7 +145,6 @@ static IntegerVector mmdb_getint(MMDB_s *data, const CharacterVector ip_addresse
   
   return output;
 }
-
 
 CharacterVector maxmind_bindings::continent_name(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getstring(data, ip_addresses, "continent", "names", "en", NULL);
@@ -152,7 +187,7 @@ CharacterVector maxmind_bindings::organization(MMDB_s *data, CharacterVector ip_
 }
 
 IntegerVector maxmind_bindings::asn(MMDB_s *data, CharacterVector ip_addresses){
-  return mmdb_getint(data, ip_addresses, "autonomous_system_number", NULL);
+  return mmdb_getint32(data, ip_addresses, "autonomous_system_number", NULL);
 }
 
 CharacterVector maxmind_bindings::aso(MMDB_s *data, CharacterVector ip_addresses){
@@ -160,11 +195,11 @@ CharacterVector maxmind_bindings::aso(MMDB_s *data, CharacterVector ip_addresses
 }
 
 IntegerVector maxmind_bindings::city_geoname_id(MMDB_s *data, CharacterVector ip_addresses){
-  return mmdb_getint(data, ip_addresses, "city", "geoname_id", NULL);
+  return mmdb_getint32(data, ip_addresses, "city", "geoname_id", NULL);
 }
 
 IntegerVector maxmind_bindings::city_metro_code(MMDB_s *data, CharacterVector ip_addresses){
-  return mmdb_getint(data, ip_addresses, "location", "metro_code", NULL);
+  return mmdb_getint16(data, ip_addresses, "location", "metro_code", NULL);
 }
 
 NumericVector maxmind_bindings::latitude(MMDB_s *data, CharacterVector ip_addresses){
