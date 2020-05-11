@@ -47,9 +47,6 @@
 #'@export
 maxmind <- function(ips, file, fields = c("continent_name", "country_name",
                                           "country_code")){
-  possible_fields <- c("continent_name", "country_name", "country_code", "region_name",
-                       "city_name", "timezone", "connection", "city_geoname_id", "latitude", "longitude",
-                       "isp", "organization", "asn", "aso", "postcode")
   
   valid_fields <- (fields %in% rgeo_env$maxmind_tags)
   if(!all(valid_fields)){

@@ -42,7 +42,7 @@ test_that("Longitude, latitude, and geoname_id can be retrieved", {
     infile <- system.file("extdata", test_file, package = "rgeolocate")
     results <- maxmind("2.125.160.216", infile, c("continent_name", "country_code",
                                        "country_name", "city_name",
-                                       "latitude", "longitude", "city_geoname_id"))
+                                       "latitude", "longitude", "city_geoname_id", "city_metro_code"))
     expect_that(results$continent_name[1], equals("Europe"))
     expect_that(results$country_code[1], equals("GB"))
     expect_that(results$country_name[1], equals("United Kingdom"))
