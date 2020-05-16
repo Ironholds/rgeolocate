@@ -1,6 +1,7 @@
 context("Test ip-api")
 
 test_that("data.frames can be returned from ip-api", {
+  skip_on_cran()
   result <- try({
     ip_api("2607:FB90:426:DC1D:CFC4:4875:8BC2:4D93")},
     silent = TRUE)
@@ -12,6 +13,7 @@ test_that("data.frames can be returned from ip-api", {
 })
 
 test_that("Lists can be returned from ip-api", {
+  skip_on_cran()
   result <- try({
     ip_api("2607:FB90:426:DC1D:CFC4:4875:8BC2:4D93", FALSE)},
     silent = TRUE)
@@ -23,6 +25,7 @@ test_that("Lists can be returned from ip-api", {
 })
 
 test_that("data.frames with errors can be returned from ip-api", {
+  skip_on_cran()
   result <- try({
     ip_api("Goahead")},
     silent = TRUE)
