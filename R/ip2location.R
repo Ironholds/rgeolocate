@@ -9,7 +9,7 @@
 #'
 #'@param file The path to an IP2Location binary database. One is included
 #'in the package (see the examples below); full datasets can be purchased, and sample ones
-#'downloaded, at \href{http://lite.ip2location.com/}{the ip2location website}.
+#'downloaded, at \href{https://lite.ip2location.com/}{the ip2location website}.
 #'
 #'@param fields Which pieces of metadata to retrieve for each IP address. Options are:
 #'\itemize{
@@ -33,7 +33,7 @@
 #'  \item{mobile_brand}{: The commercial brand associated with the mobile carrier.}
 #'  \item{elevation}{: The elevation of the location above sea level, in meters.}
 #'  \item{usage_type}{: The type of organisation or purpose behind the IP; see the list
-#'  \href{http://www.ip2location.com/docs/db24-ip-country-region-city-latitude-longitude-zipcode-timezone-isp-domain-netspeed-areacode-weather-mobile-elevation-usagetype-specification.pdf}{here}}.
+#'  \href{https://www.ip2location.com/docs/db24-ip-country-region-city-latitude-longitude-zipcode-timezone-isp-domain-netspeed-areacode-weather-mobile-elevation-usagetype-specification.pdf}{here}}.
 #'}
 #'Note that these fields may or may not be available depending on your database type.
 #'

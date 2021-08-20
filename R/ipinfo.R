@@ -52,7 +52,7 @@ ipinfo_single <- function(url){
 
 #'@title Geolocate IP Addresses Through ipinfo.io
 #'@description \code{ip_info} consumes a vector of IP addresses
-#'and geolocates them via \href{http://ipinfo.io}{ipinfo.io}.
+#'and geolocates them via \href{https://ipinfo.io}{ipinfo.io}.
 #'
 #'@param ip_addresses a character vector of IP addresses
 #'
@@ -83,7 +83,7 @@ ipinfo_single <- function(url){
 #'@export
 ip_info <- function(ip_addresses, token = NULL){
   
-  urls <- paste0("http://ipinfo.io/", ip_addresses,
+  urls <- paste0("https://ipinfo.io/", ip_addresses,
                  ifelse(is.null(token), "",
                         paste0("?token=", token)))
   

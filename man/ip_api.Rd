@@ -25,7 +25,7 @@ possible output.
 }
 \description{
 \code{ip_api} consumes a vector of IP addresses
-and geolocates them via \href{http://ip-api.com}{ip-api.com}.
+and geolocates them via \href{https://ip-api.com}{ip-api.com}.
 }
 \examples{
 \dontrun{

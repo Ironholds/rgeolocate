@@ -14,7 +14,7 @@ db_ip(ip_addresses, key)
 \value{
 a list of lists, each containing the geolocated values for one IP address.
 The variables found depend on the level of access your API key has; see the
-DB-IP API documentation on \href{http://db-ip.com}{their website}
+DB-IP API documentation on \href{https://db-ip.com}{their website}
 for more information.
 }
 \description{
@@ -23,7 +23,7 @@ and geolocates them via \href{https://db-ip.com/}{db-ip.com}.
 See `Details` for more information.
 }
 \details{
-\href{http://db-ip.com/}{db-ip.com} provides IP geolocation,
+\href{https://db-ip.com/}{db-ip.com} provides IP geolocation,
 either for free (with a cap of 2,500 requests a day) or in various paid tiers.
 
 To use the service, register there for an API key, and plug that key and the

@@ -19,7 +19,7 @@ fields will be filled with \code{NA} values.
 }
 \description{
 \code{ip_info} consumes a vector of IP addresses
-and geolocates them via \href{http://ipinfo.io}{ipinfo.io}.
+and geolocates them via \href{https://ipinfo.io}{ipinfo.io}.
 }
 \examples{
 \dontrun{

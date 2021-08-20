@@ -2,7 +2,7 @@ query_ip_api <- function(ip, sleep){
   if(sleep){
     Sys.sleep(0.40)
   }
-  url <- paste0("http://ip-api.com/json/", ip)
+  url <- paste0("https://ip-api.com/json/", ip)
   
   result <- httr::GET(url, user_agent("rgeolocate - https://github.com/Ironholds/rgeolocate"))
   if(result$status > 300){
@@ -18,7 +18,7 @@ query_ip_api <- function(ip, sleep){
 
 #'@title Geolocate IP Addresses Through ip-api.com
 #'@description \code{ip_api} consumes a vector of IP addresses
-#'and geolocates them via \href{http://ip-api.com}{ip-api.com}.
+#'and geolocates them via \href{https://ip-api.com}{ip-api.com}.
 #'
 #'@param ip_addresses a character vector of IP addresses
 #'
