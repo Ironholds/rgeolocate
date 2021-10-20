@@ -1,13 +1,13 @@
 ### Modified version of the libmaxminddb configure.ac 6/23/2015
 ### Removed unneeded options and checks.
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.71])
 AC_INIT([libmaxminddb],[1.0.4])
 AC_CONFIG_HEADERS([src/config.h])
 
-AC_PROG_CC_C99
+AC_PROG_CC
 
-# Copied from http://stackoverflow.com/a/10682813/9832 and tweaked for C (as
+# Copied from https://stackoverflow.com/a/10682813/9832 and tweaked for C (as
 # opposed to C++)
 #
 # AX_CHECK_CFLAGS(ADDITIONAL-CFLAGS, ACTION-IF-FOUND, ACTION-IF-NOT-FOUND)
