@@ -17,7 +17,7 @@ test_that("Lists can be returned from ip-api", {
   result <- try({
     ip_api("2607:FB90:426:DC1D:CFC4:4875:8BC2:4D93", FALSE)},
     silent = TRUE)
-  if(!"try-error" %in% class(result)){
+  if(!"try-error" %in% class(result) && !result[[1]] == "Error"){
     expect_that(is.list(result), equals(TRUE))
     expect_that(length(result), equals(1))
     expect_that(length(result[[1]]), equals(14))

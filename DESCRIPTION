@@ -2,7 +2,7 @@ Package: rgeolocate
 Type: Package
 Title: IP Address Geolocation
 Version: 1.4.1
-Date: 2021-08-16
+Date: 2021-10-20
 Author: Os Keyes [aut, cre], Drew Schmidt [aut], David Robinson [ctb],
     Chris Davis [ctb], Bob Rudis [ctb], Maxmind, Inc. [cph], Pascal Gloor [cph], IP2Location.com [cph]
 Maintainer: Os Keyes <ironholds@gmail.com>
@@ -22,5 +22,5 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8

@@ -1,8 +1,8 @@
 ### Modified version of the libmaxminddb configure.ac 6/23/2015
 ### Removed unneeded options and checks.
 
-AC_PREREQ([2.63])
-AC_INIT([libmaxminddb], [1.0.4])
+AC_PREREQ([2.69])
+AC_INIT([libmaxminddb],[1.0.4])
 AC_CONFIG_HEADERS([src/config.h])
 
 AC_PROG_CC_C99
@@ -50,4 +50,5 @@ AC_SEARCH_LIBS([getaddrinfo], [socket])
 AC_CHECK_LIB(rt, shm_open)
 
 AC_SUBST(MAXMINDDB_CFLAGS)
-AC_OUTPUT(src/Makevars)
+AC_CONFIG_FILES([src/Makevars])
+AC_OUTPUT
