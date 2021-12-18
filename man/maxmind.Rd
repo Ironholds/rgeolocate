@@ -25,8 +25,8 @@ maxmind(
  \item{postcode}{: The approximate post/ZIP code. Requires a city database. }
  \item{city_geoname_id}{: a unique ID representing a city. Requires a city database. }
  \item{timezone}{: the tzdata-compatible time zone. Requires a city database.}
- \item{longitude}{: latitude of location. Requires a city database.}
- \item{latitude}{: longitude of location. Requires a city database.}
+ \item{longitude}{: longitude of location. Requires a city database.}
+ \item{latitude}{: latitude of location. Requires a city database.}
  \item{isp}{: name of ISP. Requires an ISP database.}
  \item{organization}{: name of organization. Requires an ISP database.}
  \item{asn}{: Autonomous System Number. Requires an ISP database.}
