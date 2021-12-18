@@ -34,6 +34,9 @@
 #include "IP2Location.h"
 #include "IP2Loc_DBInterface.h"
 
+// inet_pton is available in Windows since Windows 2008
+// the replacement conflicts with UCRT version of inet_pton (the last argument is void *)
+#ifndef _UCRT
 #ifdef _WIN64
 #define IS_WINDOWS
 #elif defined _WIN32
@@ -173,7 +176,7 @@ int inet_pton(int af, const char *src, unsigned int *dst){
   }
 }
 #endif
-
+#endif
 typedef struct ipv_t
 {
     uint32_t ipversion;

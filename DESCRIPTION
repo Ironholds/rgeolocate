@@ -1,8 +1,8 @@
 Package: rgeolocate
 Type: Package
 Title: IP Address Geolocation
-Version: 1.4.1
-Date: 2021-10-20
+Version: 1.4.2
+Date: 2021-12-18
 Author: Os Keyes [aut, cre], Drew Schmidt [aut], David Robinson [ctb],
     Chris Davis [ctb], Bob Rudis [ctb], Maxmind, Inc. [cph], Pascal Gloor [cph], IP2Location.com [cph]
 Maintainer: Os Keyes <ironholds@gmail.com>

@@ -69,9 +69,9 @@ test_that("Unknown longitude, latitude and geoname_id are returned as NA", {
                                                   "country_name", "city_name",
                                                   "latitude", "longitude",
                                                   "city_geoname_id"))
-    expect_that(is.na(results$latitude[1]), is_true())
-    expect_that(is.na(results$longitude[1]), is_true())
-    expect_that(is.na(results$city_geoname_id[1]), is_true())
+    expect_true(is.na(results$latitude[1]))
+    expect_true(is.na(results$longitude[1]))
+    expect_true(is.na(results$city_geoname_id[1]))
   }
 })
 
