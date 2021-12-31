@@ -210,6 +210,10 @@ NumericVector maxmind_bindings::longitude(MMDB_s *data, CharacterVector ip_addre
   return mmdb_getdouble(data, ip_addresses, "location", "longitude", NULL);
 }
 
+IntegerVector maxmind_bindings::accuracy_radius(MMDB_s *data, CharacterVector ip_addresses){
+  return mmdb_getint16(data, ip_addresses, "location", "accuracy_radius", NULL);
+}
+
 List maxmind_bindings::lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set,
                                                      std::vector < std::string > fields){
   
@@ -233,6 +237,8 @@ List maxmind_bindings::lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set,
       output.push_back(latitude(mmdb_set, ip_addresses));
     } else if(fields[i] == "longitude"){
       output.push_back(longitude(mmdb_set, ip_addresses));
+    } else if(fields[i] == "accuracy_radius"){
+      output.push_back(accuracy_radius(mmdb_set, ip_addresses));
     } else if(fields[i] == "connection"){
       output.push_back(connection(mmdb_set, ip_addresses));
     } else if(fields[i] == "organization"){
