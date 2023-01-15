@@ -5,8 +5,6 @@ AC_PREREQ([2.71])
 AC_INIT([libmaxminddb],[1.0.4])
 AC_CONFIG_HEADERS([src/config.h])
 
-AC_PROG_CC
-
 # Copied from https://stackoverflow.com/a/10682813/9832 and tweaked for C (as
 # opposed to C++)
 #
