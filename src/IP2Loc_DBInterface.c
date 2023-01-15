@@ -43,6 +43,9 @@
 #define IP2LOCATION_SHM "/IP2location_Shm"
 #define MAP_ADDR 4194500608
 
+
+#define UNUSED(x) ((void)(x)) // avoid 'set but not used' warning
+
 //Static variables
 static enum IP2Location_mem_type DB_access_type = IP2LOCATION_FILE_IO;
 static void *cache_shm_ptr;
@@ -265,15 +268,16 @@ uint32_t IP2Location_read32(FILE *handle, uint32_t position){
   uint32_t byte3 = 0;
   uint32_t byte4 = 0;
   uint8_t *cache_shm = cache_shm_ptr;
-  size_t temp;
   
   //Read from file
   if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
+    size_t temp;
     fseek(handle, position-1, 0);
     temp = fread(&byte1, 1, 1, handle);
     temp = fread(&byte2, 1, 1, handle);
     temp = fread(&byte3, 1, 1, handle);
     temp = fread(&byte4, 1, 1, handle);
+    UNUSED(temp);
   } else {
     byte1 = cache_shm[ position - 1 ];
     byte2 = cache_shm[ position ];
@@ -287,10 +291,11 @@ uint8_t IP2Location_read8(FILE *handle, uint32_t position){
   
   uint8_t ret = 0;
   uint8_t *cache_shm = cache_shm_ptr;
-  size_t temp;
   if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
+    size_t temp;
     fseek(handle, position-1, 0);
     temp = fread(&ret, 1, 1, handle);
+    UNUSED(temp);
   } else {
     ret = cache_shm[ position - 1 ];
   }
@@ -302,14 +307,15 @@ char *IP2Location_readStr(FILE *handle, uint32_t position){
   uint8_t size = 0;
   char *str = 0;
   uint8_t *cache_shm = cache_shm_ptr;
-  size_t temp;
   
   if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
+    size_t temp;
     fseek(handle, position, 0);
     temp = fread(&size, 1, 1, handle);
     str = (char *)malloc(size+1);
     memset(str, 0, size+1);
     temp = fread(str, size, 1, handle);
+    UNUSED(temp);
   } else {
     size = cache_shm[ position ];
     str = (char *)malloc(size+1);
@@ -334,6 +340,7 @@ float IP2Location_readFloat(FILE *handle, uint32_t position){
     temp = fread(p+2, 1, 1, handle);
     temp = fread(p+1, 1, 1, handle);
     temp = fread(p,   1, 1, handle);
+    UNUSED(temp);
   } else {
     *(p+3) = cache_shm[ position - 1 ];
     *(p+2) = cache_shm[ position ];
@@ -344,6 +351,7 @@ float IP2Location_readFloat(FILE *handle, uint32_t position){
   if (DB_access_type == IP2LOCATION_FILE_IO && handle != NULL){
     fseek(handle, position-1, 0);
     temp = fread(&ret, 4, 1, handle);
+    UNUSED(temp);
   } else {
     memcpy((void*) &ret, (void*)&cache_shm[ position - 1 ], 4);
   }
