@@ -210,7 +210,7 @@ static uint32_t IP2Location_ip2no(char* ip);
 static int IP2Location_ip_is_ipv4 (char* ipaddr);
 static int IP2Location_ip_is_ipv6 (char* ipaddr);
 static IP2LocationRecord *IP2Location_get_record(IP2Location *loc, char *ip, uint32_t mode);
-static IP2LocationRecord *IP2Location_get_ipv6_record(IP2Location *loc, char *ipstring, uint32_t mode, ipv_t parsed_ipv);
+static IP2LocationRecord *IP2Location_get_ipv6_record(IP2Location *loc, uint32_t mode, ipv_t parsed_ipv);
 static int32_t openMemFlag = 0;
 
 // Description: Open the IP2Location database file
@@ -707,7 +707,7 @@ static IP2LocationRecord *IP2Location_read_record(IP2Location *loc, uint32_t row
 }
 
 // Description: Get record for a IPv6 from database
-static IP2LocationRecord *IP2Location_get_ipv6_record(IP2Location *loc, char *ipstring, uint32_t mode, ipv_t parsed_ipv)
+static IP2LocationRecord *IP2Location_get_ipv6_record(IP2Location *loc, uint32_t mode, ipv_t parsed_ipv)
 {
     FILE *handle = loc->filehandle;
     uint32_t baseaddr = loc->ipv6databaseaddr;
@@ -761,7 +761,7 @@ static IP2LocationRecord *IP2Location_get_ipv6_record(IP2Location *loc, char *ip
 }
 
 // Description: Get record for a IPv4 from database
-static IP2LocationRecord *IP2Location_get_ipv4_record(IP2Location *loc, char *ipstring, uint32_t mode, ipv_t parsed_ipv)
+static IP2LocationRecord *IP2Location_get_ipv4_record(IP2Location *loc, uint32_t mode, ipv_t parsed_ipv)
 {
     FILE *handle = loc->filehandle;
     uint32_t baseaddr = loc->ipv4databaseaddr;
@@ -824,12 +824,12 @@ static IP2LocationRecord *IP2Location_get_record(IP2Location *loc, char *ipstrin
 	if (parsed_ipv.ipversion == 4)
 	{
 		//process IPv4
-		return IP2Location_get_ipv4_record(loc, ipstring, mode, parsed_ipv);
+		return IP2Location_get_ipv4_record(loc, mode, parsed_ipv);
 	}
     if (parsed_ipv.ipversion == 6)
     {
 		//process IPv6
-        return IP2Location_get_ipv6_record(loc, ipstring, mode, parsed_ipv);
+        return IP2Location_get_ipv6_record(loc, mode, parsed_ipv);
     }
 	else
     {
@@ -916,5 +916,3 @@ char *IP2Location_api_version_string(void)
     snprintf(version, sizeof(version), "%d.%d.%d", API_VERSION_MAJOR, API_VERSION_MINOR, API_VERSION_RELEASE);
     return(version);
 }
-
-
