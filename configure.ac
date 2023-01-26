@@ -5,6 +5,14 @@ AC_PREREQ([2.71])
 AC_INIT([libmaxminddb],[1.0.4])
 AC_CONFIG_HEADERS([src/config.h])
 
+: ${R_HOME=`R RHOME`}
+if test -z "${R_HOME}"; then
+  AC_MSG_ERROR([Unable to determine RHOME])
+fi
+CC=`"${R_HOME}/bin/R" CMD config CC`
+CFLAGS=`"${R_HOME}/bin/R" CMD config CFLAGS`
+CPPFLAGS=`"${R_HOME}/bin/R" CMD config CPPFLAGS`
+
 # Copied from https://stackoverflow.com/a/10682813/9832 and tweaked for C (as
 # opposed to C++)
 #
