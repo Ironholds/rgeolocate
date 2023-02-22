@@ -44,6 +44,8 @@ private:
 
   NumericVector longitude(MMDB_s *data, CharacterVector ip_addresses);
   
+  IntegerVector accuracy_radius(MMDB_s *data, CharacterVector ip_addresses);
+  
   List lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set, std::vector < std::string > fields);
   
 public:

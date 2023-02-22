@@ -19,6 +19,7 @@
 #'  \item{timezone}{: the tzdata-compatible time zone. Requires a city database.}
 #'  \item{longitude}{: longitude of location. Requires a city database.}
 #'  \item{latitude}{: latitude of location. Requires a city database.}
+#'  \item{accuracy_radius}{: estimated accurracy radius (in km) of location. Requires a city database.}
 #'  \item{isp}{: name of ISP. Requires an ISP database.}
 #'  \item{organization}{: name of organization. Requires an ISP database.}
 #'  \item{asn}{: Autonomous System Number. Requires an ISP database.}
