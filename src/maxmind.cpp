@@ -175,23 +175,23 @@ CharacterVector maxmind_bindings::postcode(MMDB_s *data, CharacterVector ip_addr
 }
 
 CharacterVector maxmind_bindings::connection(MMDB_s *data, CharacterVector ip_addresses){
-  return mmdb_getstring(data, ip_addresses, "connection_type", NULL);
+  return mmdb_getstring(data, ip_addresses, "traits", "connection_type", NULL);
 }
 
 CharacterVector maxmind_bindings::isp(MMDB_s *data, CharacterVector ip_addresses){
-  return mmdb_getstring(data, ip_addresses, "isp", NULL);
+  return mmdb_getstring(data, ip_addresses, "traits", "isp", NULL);
 }
 
 CharacterVector maxmind_bindings::organization(MMDB_s *data, CharacterVector ip_addresses){
-  return mmdb_getstring(data, ip_addresses, "organization", NULL);
+  return mmdb_getstring(data, ip_addresses, "traits", "organization", NULL);
 }
 
 IntegerVector maxmind_bindings::asn(MMDB_s *data, CharacterVector ip_addresses){
-  return mmdb_getint32(data, ip_addresses, "autonomous_system_number", NULL);
+  return mmdb_getint32(data, ip_addresses, "traits", "autonomous_system_number", NULL);
 }
 
 CharacterVector maxmind_bindings::aso(MMDB_s *data, CharacterVector ip_addresses){
-  return mmdb_getstring(data, ip_addresses, "autonomous_system_organization", NULL);
+  return mmdb_getstring(data, ip_addresses, "traits", "autonomous_system_organization", NULL);
 }
 
 IntegerVector maxmind_bindings::city_geoname_id(MMDB_s *data, CharacterVector ip_addresses){
@@ -208,6 +208,10 @@ NumericVector maxmind_bindings::latitude(MMDB_s *data, CharacterVector ip_addres
 
 NumericVector maxmind_bindings::longitude(MMDB_s *data, CharacterVector ip_addresses){
   return mmdb_getdouble(data, ip_addresses, "location", "longitude", NULL);
+}
+
+CharacterVector maxmind_bindings::user_type(MMDB_s *data, CharacterVector ip_addresses){
+  return mmdb_getstring(data, ip_addresses, "traits", "user_type", NULL);
 }
 
 List maxmind_bindings::lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set,
@@ -249,6 +253,8 @@ List maxmind_bindings::lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set,
       output.push_back(city_geoname_id(mmdb_set, ip_addresses));
     } else if (fields[i] == "city_metro_code") {
       output.push_back(city_metro_code(mmdb_set, ip_addresses));
+    } else if (fields[i] == "user_type") {
+      output.push_back(user_type(mmdb_set, ip_addresses));
     }
     
   }
