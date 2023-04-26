@@ -44,6 +44,8 @@ private:
 
   NumericVector longitude(MMDB_s *data, CharacterVector ip_addresses);
   
+  CharacterVector user_type(MMDB_s *data, CharacterVector ip_addresses);
+
   List lookup(CharacterVector ip_addresses, MMDB_s *mmdb_set, std::vector < std::string > fields);
   
 public:

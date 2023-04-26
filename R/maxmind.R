@@ -24,6 +24,7 @@
 #'  \item{asn}{: Autonomous System Number. Requires an ISP database.}
 #'  \item{aso}{: Autonomous System Organization. Requires an ISP database.}
 #'  \item{connection}{: the type of internet connection. Requires a connection type/netspeed database.}
+#'  \item{user_type}{: the type of organization, i.e. Hosting, Corporate. Requires an ISP database.}
 #'}
 #'@details
 #'\code{geolookup} uses the \href{https://dev.maxmind.com/geoip/geoip2/downloadable/}{MaxMind GeoIP2 databases}
